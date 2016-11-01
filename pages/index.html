@@ -21,6 +21,8 @@
     <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
     <!-- DataTables Responsive CSS -->
     <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,11 +55,6 @@
                         Nombre de usuario <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
                         <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
@@ -78,65 +75,22 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="index.html#altaEspera"><i class="fa fa-group fa-fw"></i> Alta espera</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                            <a href="index.html#estadistica"><i class="fa fa-bar-chart-o fa-fw"></i>Estadísticas</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="index.html#alumnos"><i class="fa fa-user fa-fw"></i>Alumnos</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="index.html#guia"><i class="fa fa-question-circle fa-fw"></i>Guía</a>
                         </li>
+                        <li>
+                            <a href="index.html#alumnos"><i class="fa fa-clock-o fa-fw"></i>Cronometros</a>
+                        </li>
+                        
+                      
                         <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -207,6 +161,11 @@
     <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
     <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+    
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
 
 
     <script type="text/javascript">
