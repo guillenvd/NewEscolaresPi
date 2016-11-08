@@ -33,7 +33,11 @@ var Controller = (function() {
         case '#estadistica':
             $('div#page-wrapper.principal-container').load('taps/estadistica.html')
             
-        break;   
+        break; 
+        case '#betaalumnos':
+            $('div#page-wrapper.principal-container').load('taps/betaalumnos.html')
+            
+        break;    
         case '#alumnos':
             $('div#page-wrapper.principal-container').load('taps/alumnos.html')
             
