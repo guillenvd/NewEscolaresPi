@@ -79,7 +79,7 @@
 
 .ac-custom input[type="checkbox"]:checked + label,
 .ac-custom input[type="radio"]:checked + label {
-	color: #4CAF50;
+	color: #009688;
 } 
 
 .ac-custom input[type="checkbox"]:checked + label::before,
@@ -157,7 +157,7 @@
 	font-size: 2em;
 	padding: 1em 1em 0 2em;
 	text-indent: -40px;
-	color: #;
+	color: #009688;
 }
 
 .ac-list ol li label {
