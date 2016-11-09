@@ -25,12 +25,11 @@ a:hover, a:focus {
 	opacity: 1;
 }
 */
-
 header {
 	margin: 0 auto;
 	padding: 4em 2em;
 	text-align: center;
-	background: rgba(0,0,0,.05);
+	
 }
 
 header h1 {
@@ -49,13 +48,13 @@ header span {
 }
 
 section {
-	color: #FFF;
-	background: #fb887c !important;
+	color: #455A64;
 	padding: 7em 0;
+	background: #fffff0;
 }
 
 section:nth-child(even) {
-	background: rgba(0,0,0,.05);
+	
 }
 
 section.related {
