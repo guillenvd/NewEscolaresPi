@@ -68,7 +68,14 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="dist/js/sb-admin-2.js"></script>
-
+    <!-- Controller of the Auth page -->
+    <script src="dist/js/controllers/Auth.js"></script>
+    <script src="dist/js/controller.js"></script>
+    <script type="text/javascript" >
+        $(document).ready(function(){
+            _app.loadControllerFiles('Auth');
+        })
+    </script>
 </body>
 
 </html>

@@ -1,5 +1,4 @@
 // Global variable for the app we going to acces to a
-var _app = null;    
 
 var Controller = (function() {
     var _bar; //global varible
@@ -45,7 +44,8 @@ var Controller = (function() {
                 dataType: "script",
                 async: false
             }).done(function(doneData){
-                eval( controllerName+ 'Controller()');
+                eval( '_'+controllerName+' = new '+controllerName+ 'Controller;');
+                console.log('IMPORTANT!: new controller was load in the global scope, name:'+ '_'+controllerName);
             }); 
         } else if (filetype == 'css') {
             $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', pathFile));
@@ -113,3 +113,5 @@ var Controller = (function() {
     };
     return Controller;
 })();
+
+var _app = new Controller;    
