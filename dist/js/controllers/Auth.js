@@ -1,4 +1,4 @@
-// Global variable for the app we going to acces to a
+// Global variable for the app we going to access to a
 var AuthController = (function() {
     // constructor
     function AuthController() {

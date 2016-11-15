@@ -26,8 +26,8 @@ var Controller = (function() {
      * @return { none } this function past the path for controller to other funtion
     */
     Controller.prototype.loadControllerFiles= function(controllerName) {
-        this.loadScriptFileSyncronous('../dist/js/controllers/' + controllerName + '.js', 'js', controllerName);
-        this.loadScriptFileSyncronous('../dist/css/' + controllerName + '.css', 'css', controllerName);
+        this.loadScriptFileSyncronous('dist/js/controllers/' + controllerName + '.js', 'js', controllerName);
+        this.loadScriptFileSyncronous('dist/css/' + controllerName + '.css', 'css', controllerName);
     };
 
     /**
