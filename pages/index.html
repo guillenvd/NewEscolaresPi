@@ -63,7 +63,7 @@
                         Nombre de usuario <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="#" onclick="_Auth.logOut()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -180,11 +180,11 @@
 
     <script type="text/javascript">
         $(document).ready(function(){
-            var controller =  new Controller();
-            controller.loadPage();
+            _App.loadControllerFiles('Auth');
+            _App.loadPage();
             $('#side-menu > li > a').unbind().bind('click', function(){
                 setTimeout(function(){
-                    controller.loadPage()
+                    _App.loadPage()
                 },100);
             });
         }); 

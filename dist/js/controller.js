@@ -4,7 +4,7 @@ var Controller = (function() {
     var _bar; //global varible
     // constructor
     function Controller() {
-        _app = this; //inherit the controller methods to app
+        _App = this; //inherit the controller methods to app
         console.log('init Controller');
         $('#page-wrapper').css('min-height', $(window).height()- $('.navbar-default').height()-$('.footer-inner').height()-2);
     };
@@ -19,15 +19,30 @@ var Controller = (function() {
     Controller.prototype.getHash = function() {
         return window.location.hash;
     };
-
+    /**
+     * Description: This method going to back a template of a message of boostrap
+     *              the message can have html code, and the type can be
+     *               - succcess has backcolor green
+     *               - info has backcolor blue
+     *               - warning has backcolor yellow
+     *               - danger has backcolor red
+     * @param {text} message  [content of the alert]
+     * @param {text} type  [kind of alert]
+     * @return { text } template fot eh alert
+    */
+    Controller.prototype.getAlert= function(message, type = 'info', centerText = 0){
+      return  '<div class="alert alert-'+type+' '+ (parseInt(centerText)?'text-center':'')+'">'
+                +message
+              +'</div>';
+    };
     /**
      * Description: Load controller files for any page
      * @param {text} controllerName  [Name of the file and the controller]
      * @return { none } this function past the path for controller to other funtion
     */
     Controller.prototype.loadControllerFiles= function(controllerName) {
-        this.loadScriptFileSyncronous('dist/js/controllers/' + controllerName + '.js', 'js', controllerName);
-        this.loadScriptFileSyncronous('dist/css/' + controllerName + '.css', 'css', controllerName);
+        this.loadScriptFileSyncronous('/dist/js/controllers/' + controllerName + '.js', 'js', controllerName);
+        this.loadScriptFileSyncronous('/dist/css/' + controllerName + '.css', 'css', controllerName);
     };
 
     /**
@@ -40,7 +55,7 @@ var Controller = (function() {
     Controller.prototype.loadScriptFileSyncronous = function(pathFile, filetype, controllerName) {
         if(filetype == 'js') {
             $.ajax({
-                url: pathFile,
+                url: 'http://'+window.location.host+pathFile,
                 dataType: "script",
                 async: false
             }).done(function(doneData){
@@ -48,7 +63,7 @@ var Controller = (function() {
                 console.log('IMPORTANT!: new controller was load in the global scope, name:'+ '_'+controllerName);
             }); 
         } else if (filetype == 'css') {
-            $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href', pathFile));
+            $('head').append( $('<link rel="stylesheet" type="text/css" />').attr('href',  'http://'+window.location.host+pathFile));
         }
     };
 
@@ -61,7 +76,7 @@ var Controller = (function() {
      * @return { execute php function }
 
      * example of this method:
-        _app.phpOperation('getCarrera', function(data){
+        _App.phpOperation('getCarrera', function(data){
             var jsonResponse  = jQuery.parseJSON(data);
             console.log(jsonResponse);
         });
@@ -78,7 +93,13 @@ var Controller = (function() {
     Controller.prototype.loadPage = function(){
         switch (this.getHash()) {
           case '#home':
-            $('div#page-wrapper.principal-container').load('taps/home.html');
+            $('div#page-wrapper.principal-container').load('taps/home.html', function(){
+                _App.phpOperation('totalAlumnos', function(data){
+                    var jsonResponse  = jQuery.parseJSON(data);
+                    console.log(jsonResponse.totalAlumnos);
+                    $('#containerHome #totalAlumno').val('#'+jsonResponse.totalAlumnos)
+                });
+            });
         break;
         case '#espera':
             $('div#page-wrapper.principal-container').load('taps/listaEspera.html', function(){
@@ -114,4 +135,4 @@ var Controller = (function() {
     return Controller;
 })();
 
-var _app = new Controller;    
+var _App = new Controller;    

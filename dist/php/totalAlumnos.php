@@ -3,7 +3,7 @@
 	Include principal para la conexión a la base de datos
 */
 include("conexion.php");
-$Indice = date("Y-m-d");// Fecha actual, ejemplo 2015-12-31 23:59:59
+$Indice = date("Y-m-d");// Fecha actual, ejemplo 2015-12-31
 
 $sqlGetTurno = "SELECT count(id) as totalAlumnos FROM alumnos WHERE  indice ='".$Indice."'";
 // ir por cantidad de alumnos
