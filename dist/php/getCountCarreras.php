@@ -4,7 +4,7 @@
 */
 include("conexion.php");
 $total = array();
-$sqlGetTurno = "SELECT sum(case when carrera = 1 then 1 else 0 end) Electronica, 
+$sqlGetTurno = "SELECT  sum(case when carrera = 1 then 1 else 0 end) Electronica, 
 						sum(case when carrera = 2 then 1 else 0 end) Electromecanica,
 						sum(case when carrera = 3 then 1 else 0 end) Gestion,
 						sum(case when carrera = 4 then 1 else 0 end) Industrial,
