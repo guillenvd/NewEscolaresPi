@@ -16,8 +16,18 @@ var Controller = (function() {
      * Description: Get the hash fo the url : domain.local/index.html#thisMehodBackThis
      * @return { String } -> #has
     */
-    Controller.prototype.getHash = function() {
+    Controller.prototype.getHash = function() {   
+        $('div#page-wrapper.principal-container').load('taps/home.html', function(){
+                _App.phpOperation('username', function(data){
+                    var jsonResponse  = jQuery.parseJSON(data);
+                    console.log(jsonResponse.username);
+                    $('#wrapper #yosoy').val(jsonResponse.username)
+                });
+            });
         return window.location.hash;
+
+
+
     };
     /**
      * Description: This method going to back a template of a message of boostrap
@@ -100,6 +110,7 @@ var Controller = (function() {
                     $('#containerHome #totalAlumno').val('#'+jsonResponse.totalAlumnos)
                 });
             });
+
         break;
         case '#espera':
             $('div#page-wrapper.principal-container').load('taps/listaEspera.html', function(){
