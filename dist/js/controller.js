@@ -128,8 +128,23 @@ var Controller = (function() {
             
         break; 
         case '#betaalumnos':
-            $('div#page-wrapper.principal-container').load('taps/betaalumnos.html')
+            $('div#page-wrapper.principal-container').load('taps/betaalumnos.html', function(){
+                _App.phpOperation('docu', function(data){
+                    var jsonResponse  = jQuery.parseJSON(data);
+                    console.log(jsonResponse.Documento);
+
+                    $('#documentos #doc0').html(jsonResponse.Documento[0].Documento);
+                    $('#documentos #doc1').html(jsonResponse.Documento[1].Documento);
+                    $('#documentos #doc2').html(jsonResponse.Documento[2].Documento);
+                    $('#documentos #doc3').html(jsonResponse.Documento[3].Documento);
             
+            $.each(jsonResponse,function(index, value){
+                console.log('My array has at position ' + index + ', this value: ' + value);
+            });
+
+
+                });
+            });
         break;    
         case '#alumnos':
             $('div#page-wrapper.principal-container').load('taps/alumnos.html')
