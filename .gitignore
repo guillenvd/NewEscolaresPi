@@ -1,2 +1,2 @@
-logs/
+logs/access.log
 dist/php/conexion.php

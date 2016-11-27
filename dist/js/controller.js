@@ -152,6 +152,15 @@ var Controller = (function() {
                 });
             }); 
         break;    
+
+        case '#alumnos':
+            $('div#page-wrapper.principal-container').load('taps/alumnos.html')
+            
+        break;   
+        case '#mover':
+            $('div#page-wrapper.principal-container  section#documentos').load('taps/alumnos.html')
+            
+        break;   
         case '#guia':
             $('div#page-wrapper.principal-container').load('taps/guia.html')
             
