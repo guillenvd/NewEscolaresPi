@@ -1,11 +1,12 @@
 // Global variable for the app we going to acces to a
 
 var Controller = (function() {
-    var _bar; //global varible
     // constructor
     function Controller() {
         _App = this; //inherit the controller methods to app
         console.log('init Controller');
+        // auto init Auth controller
+        this.loadControllerFiles('Auth');
         $('#page-wrapper').css('min-height', $(window).height()- $('.navbar-default').height()-$('.footer-inner').height()-2);
     };
 
@@ -17,18 +18,26 @@ var Controller = (function() {
      * @return { String } -> #has
     */
     Controller.prototype.getHash = function() {   
-        $('div#page-wrapper.principal-container').load('taps/home.html', function(){
-                _App.phpOperation('username', function(data){
-                    var jsonResponse  = jQuery.parseJSON(data);
-                    console.log(jsonResponse.username);
-                    $('#wrapper #yosoy').html(jsonResponse.username)
-                });
-            });
         return window.location.hash;
-
-
-
     };
+    /**
+    * Description: Set value in localStorage of the web explorer
+    * @param {text} nameValue  [the name of the value in the localstorage]
+    * @param {text} value  [the value content in the localStorage]
+    * @return none
+    */
+    Controller.prototype.setValue = function(nameValue, value) {   
+         window.localStorage.setItem(nameValue,value);
+    };
+    /**
+    * Description: Get Value for the web explorar local stogare
+    * @param {text} nameValue  [the name of the value in the localstorage]
+    * @return { String } -> 'value'
+    */
+    Controller.prototype.getValue = function(nameValue) {   
+        return String(window.localStorage.getItem(String(nameValue)));
+    };   
+
     /**
      * Description: This method going to back a template of a message of boostrap
      *              the message can have html code, and the type can be
@@ -106,27 +115,26 @@ var Controller = (function() {
             $('div#page-wrapper.principal-container').load('taps/home.html', function(){
                 _App.phpOperation('totalAlumnos', function(data){
                     var jsonResponse  = jQuery.parseJSON(data);
-                    console.log(jsonResponse.totalAlumnos);
                     $('#containerHome #totalAlumno').val('#'+jsonResponse.totalAlumnos)
                 });
             });
-
+          _Auth.VerifyRole();
         break;
-        case '#espera':
+        case '#Espera':
             $('div#page-wrapper.principal-container').load('taps/listaEspera.html', function(){
-                $('#dataTables-example').DataTable({
-                        responsive: true
-                 });
+                _App.loadControllerFiles('Espera'); // all function in js are in his controller
             });
         break;
-        case '#altaEspera':
-            $('div#page-wrapper.principal-container').load('taps/esperaForm.html')
-            
-        break;  
         case '#estadistica':
             $('div#page-wrapper.principal-container').load('taps/estadistica.html')
             
         break; 
+        case '#Alumnos':
+            $('div#page-wrapper.principal-container').load('taps/alumnos.html', function(){
+                _App.loadControllerFiles('Alumnos');
+            });
+            
+        break;   
         case '#betaalumnos':
             $('div#page-wrapper.principal-container').load('taps/betaalumnos.html', function(){
                 _App.phpOperation('docu', function(data){
@@ -144,10 +152,6 @@ var Controller = (function() {
                 });
             }); 
         break;    
-        case '#alumnos':
-            $('div#page-wrapper.principal-container').load('taps/alumnos.html')
-            
-        break;   
         case '#guia':
             $('div#page-wrapper.principal-container').load('taps/guia.html')
             

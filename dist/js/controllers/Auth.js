@@ -25,7 +25,7 @@ var AuthController = (function() {
                 var jsonResponse  = jQuery.parseJSON(data);
                 console.log(jsonResponse);
                 if(parseInt(jsonResponse.estado)){
-                    localStorage.setItem('isAuth',1);
+                    _App.setValue('isAuth',1);
                     window.location.href = '/pages/index.html#home'
                 }else{
                     $('#containerAuth #alerts').empty().html(_App.getAlert('Usuario o password invalidos', 'danger', 1))
@@ -35,7 +35,21 @@ var AuthController = (function() {
             $('#containerAuth #alerts').empty().html(_App.getAlert('Se necesitan ambos campos para iniciar sesión', 'danger'))
         }
     };
+     /**
+     * [Method to do login, its send the credential to a php file and it return a status 1 for corrects credentials and 0 for bad]
+     * @param {}
+     * @return {[none]}
+     */
+    AuthController.prototype.VerifyRole= function() {
+        $('div#page-wrapper.principal-container').load('taps/home.html', function(){
+            _App.phpOperation('username', function(data){
+                var jsonResponse  = jQuery.parseJSON(data);
+                _App.setValue('roleUser',jsonResponse.username);
+                $('#wrapper #yosoy').html(jsonResponse.username+' <span class="caret"></span>')
+            });
+        }); 
 
+    };
     AuthController.prototype.checkLogin =  function(){
         return localStorage.getItem('isAuth');
     };

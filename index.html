@@ -76,12 +76,12 @@
     <!-- Controller of the Auth page -->
     <script src="dist/js/controllers/Auth.js"></script>
     <script src="dist/js/controller.js"></script>
-    <script type="text/javascript" >
-        $(document).ready(function(){
-            _App.loadControllerFiles('Auth');
-            localStorage.removeItem('isAuth');
-        })
-    </script>
 </body>
-
+<script type="text/javascript">
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+           _Auth.doLogin();
+        }
+    });
+</script>
 </html>

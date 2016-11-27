@@ -13,12 +13,14 @@
 				<form role="form" >
 					<div class="form-group" disabled>
                         <label>Ficha de inscripción</label>
-                        <input class="form-control" >
+                        <input class="form-control" id="alumnoMatricula">
                         <p class="help-block">Matricula del alumno</p>
                     </div>
-					
+					<div class="col-md-12 col-xs-12" id="alerts">
+                    </div>
 		        </form>
-		        <button type="submit" class="btn btn-primary">Buscar</button>
+		        <button type="submit" class="btn btn-primary" onclick="_Alumnos.getAlumno();">	Buscar
+		        </button>
 
 
             </div>
@@ -31,23 +33,23 @@
 						<tbody> 
 							<tr> 
 								<th>Nombre</th>
-								 <td>Mark</td>
+								<td id="nombreAlumno">-</td>
 					 		</tr> 
 							<tr> 
 								<th>Carrera</th>
-								 <td>Mark</td>
+								<td id="carreraAlumno">-</td>
 					 		</tr>
 							<tr> 
 								<th>Fecha de atención</th>
-								 <td>Mark</td>
+								<td id="fechaAlumno">-</td>
 					 		</tr>
 							<tr> 
 								<th>Turno</th>
-								 <td>Mark</td>
+								<td id="turnoAlumno">-</td>
 					 		</tr>
 							<tr> 
 								<th>Estado</th>
-								 <td>Mark</td>
+								<td id="estadoAlumno">-</td>
 					 		</tr>
 
 					 	</tbody> 
@@ -57,9 +59,5 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		 $('[data-toggle="tooltip"]').tooltip();
-	});
-</script>
+
 <!-- /.row -->

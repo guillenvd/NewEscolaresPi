@@ -7,7 +7,7 @@ $return_arr = array();
 $rawdata = array();
 
 while ($row = mysqli_fetch_array($result)) {
-	$rawdata = array('Id' =>$row['id'], 'Documento' => $row['documento'], 'Estado'=> $row['estado'] );
+	$rawdata = array('Id' =>$row['id'], 'Documento' => $row['documento'] );
 	array_push($return_arr,$rawdata);
 
 }
