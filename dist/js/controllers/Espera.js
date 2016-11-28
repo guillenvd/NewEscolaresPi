@@ -17,6 +17,7 @@ var EsperaController = (function() {
         _App.phpOperation('lista_espera', function(data){
             var jsonResponse  = jQuery.parseJSON(data);
             console.log(jsonResponse);
+            console.log(jsonResponse);
             var table = $('#listaEspera').DataTable({
                                     data: jsonResponse,
                                     columns: 

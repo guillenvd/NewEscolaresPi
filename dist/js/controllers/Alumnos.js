@@ -8,6 +8,7 @@ var AlumnosController = (function() {
     */
     AlumnosController.prototype.getAlumno =  function(){
         if($('#alumnoMatricula').val()){
+              $(' #alerts').empty();
             _App.phpOperation('searchAlumno', {Ficha:$('#alumnoMatricula').val()}, function(data){
                 var jsonResponse  = jQuery.parseJSON(data);
                 _Alumnos.clearTable();
