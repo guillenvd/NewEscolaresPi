@@ -119,8 +119,8 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #000000;
-  opacity: .3;
+  background-image: url('../img/royal.png');
+  opacity: .1;
 }
 
 .made-with-mk {
@@ -187,7 +187,7 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 
 .wizard-container {
-  padding-top: 100px;
+  padding-top: 80px;
   z-index: 3;
 }
 .wizard-container .wizard-navigation {
@@ -204,7 +204,7 @@ h2, .h2 {
 }
 
 h3, .h3 {
-  font-size: 1.825em;
+  font-size: 2.5em;
   line-height: 1.4em;
   margin: 20px 0 10px;
 }
@@ -222,7 +222,7 @@ h5, .h5 {
 
 h6, .h6 {
   font-size: 0.9em;
-  text-transform: uppercase;
+ /* text-transform: uppercase;*/
 }
 
 .title,
@@ -1860,7 +1860,7 @@ fieldset[disabled] .checkbox, fieldset[disabled] .checkbox input[type=checkbox],
 }
 
 body{
-    background-color: #CCCCCC;
+    background-color: #f1f1f1;
 }
 
 .section .wizard-card{
@@ -1938,7 +1938,7 @@ body{
 }
 
 .navigation-example{
-    background-image: url('../img/bg.jpg');
+    background-image: url('../img/bkg.jpg');
     background-position: center center;
     background-size: cover;
     margin-top:0;
@@ -1999,10 +1999,13 @@ body{
 
 .logo-container .logo{
     overflow: hidden;
-    border-radius: 50%;
-    border: 1px solid #333333;
-    width: 50px;
+    border-radius: 100%;
+    border: 4px solid #333333;
+    border-left: 4px solid #428bca;
+    border-top: 4px solid #f0ad4e;
+    border-bottom: 4px solid #d9534f; 
     float: left;
+    width: 150px;
 }
 
 .logo-container .brand{
@@ -2031,8 +2034,12 @@ body{
 }
 
 .logo-container .logo img{
+    border-radius: 100%;
     width: 100%;
+    height: 140px;
 }
+
+
 .navbar-small .logo-container .brand{
     color: #333333;
 }
