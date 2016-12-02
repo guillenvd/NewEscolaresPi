@@ -119,8 +119,9 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
   top: 0;
   width: 100%;
   height: 100%;
-  background-image: url('../img/royal.png');
-  opacity: .1;
+  background-image: url('../img/ite-0.jpg');
+  background-size: cover;
+  opacity: .9;
 }
 
 .made-with-mk {
@@ -1938,7 +1939,7 @@ body{
 }
 
 .navigation-example{
-    background-image: url('../img/bkg.jpg');
+    background-image: url('../img/ite-0.jpg');
     background-position: center center;
     background-size: cover;
     margin-top:0;
@@ -2005,7 +2006,7 @@ body{
     border-top: 4px solid #f0ad4e;
     border-bottom: 4px solid #d9534f; 
     float: left;
-    width: 150px;
+    width: 200px;
 }
 
 .logo-container .brand{
@@ -2036,7 +2037,7 @@ body{
 .logo-container .logo img{
     border-radius: 100%;
     width: 100%;
-    height: 140px;
+    height: 190px;
 }
 
 
