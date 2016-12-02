@@ -1,41 +1,33 @@
 $(document).ready(function() {
 
-    $(".rFolio").click(function(event){
-        var valor = $(event.target).val();
-        if(valor =="yes"){
-            $("#yesFolio").show();
+            //$("#yesFolio").hide();
             $("#noFolio").hide();
-			$("#infoBasica").hide();
-			$("#alertFolio").hide();
 
-			$("#btnFolio").click(function(){
-				console.log('click en enviar folio');
-				var folio = $("#myFolio").val();
-				console.log(folio);
+$('form').submit(function(e){
+		e.preventDefault();
+	var FOLIO  =  document.getElementById('alFolio').value;
 
-				if(folio == 12345){
-					$("#infoBasica").show();
-					$("#alertFolio").hide();
-            		$(".msjFolio").hide();
-				}else{
-					$("#alertFolio").show();
-            		$(".msjFolio").show();
+	$.ajax({
+		type: 'POST',
+		url: 'php/getInfoBasicAlumno.php',
+		data: {'folio': FOLIO},
+		success: function(respuesta){
+			console.log(respuesta);
+			if(respuesta.length > 0){
 
-					$(".msjFolio").html('Folio No Encontrado');
-					$("#infoBasica").hide();
-				}
-			});
+				var jsonResponse  = jQuery.parseJSON(respuesta);
+				console.log(jsonResponse);
+				console.log(jsonResponse[0].Ficha);
+				$(".msjFolio").html(jsonResponse[0].Ficha);
 
-        } else if (valor == "no") {
-            $("#yesFolio").hide();
-            $("#noFolio").show();
-            $("#infoBasica").hide();
-        }
+			}
+			else{
+				console.log("Error");
+			}
+		}
+	})
+})
 
-    });
 
-            $("#yesFolio").hide();
-            $("#noFolio").hide();
 
 });
-
