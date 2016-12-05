@@ -11,16 +11,14 @@ $alumno = array();
 	    while($row = $result->fetch_assoc()) {
 	    	$alumno =  array('Nombre' =>$row['nombre'],'Carrera' => $row['carrera'],'Fecha' =>$row['indice'],'Ficha' =>$row['id']);
 	    	array_push($return_arr,$alumno);
-	    	
 	    }
-	    echo json_encode($return_arr);
 	}
 	else{
-		echo false;
 	} 
 	$conn->close();
+		echo json_encode($return_arr);
 	
-
+	
 /*
 $folio = $_POST['folio'];
 			if($folio == '123')
