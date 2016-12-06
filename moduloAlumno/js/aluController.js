@@ -1,8 +1,9 @@
 $(document).ready(function() {
-/* Hide elements */-
+/* Hide elements */
 	$('#folioTrue').hide();
 	$('#folioFalse').hide();
 	$('#alertFolio').hide();
+	//$('#infoBasica').hide();
 
 	$(".rFolio").click(function(event){
 	    var valor = $(event.target).val();
@@ -10,11 +11,9 @@ $(document).ready(function() {
 	    	console.log('Opcion Tengo Folio.');
 			$('#folioTrue').show();
 			$('#folioFalse').hide();
-
 				$('form.formInfoBasica').submit(function(e){
 					e.preventDefault();
 					var FOLIO  =  document.getElementById('alFolio').value;
-
 					$.ajax({
 						type: 'POST',
 						url: 'php/getInfoBasicAlumno.php',
@@ -22,21 +21,22 @@ $(document).ready(function() {
 						success: function(respuesta){
 							console.log(respuesta);
 							var jsonResponse  = jQuery.parseJSON(respuesta);
-
 							console.log(jsonResponse);
-
 							if(respuesta.length > 3 ){
 								console.log('Json successfully');								
 								var jsonResponse  = jQuery.parseJSON(respuesta);
-								console.log(jsonResponse[0].Ficha);
+								console.log(jsonResponse[0].Folio);
 								$('#alertFolio').show();
-								$("#alertFolio").html(getAlert('Correcto, Folio encontrado: '+jsonResponse[0].Ficha, 'success', 1));
+								$('#infoBasica').show();
+								$("#alertFolio").html(getAlert('Correcto, Folio encontrado: '+jsonResponse[0].Folio, 'success', 1));
 
 								/*MOSTRANDO DATOS DEL ALUMNO*/
 
-								$('#al_folio').html(jsonResponse[0].Ficha);
+								$('#al_folio').html(jsonResponse[0].Folio);
 								$('#al_nombre').html(jsonResponse[0].Nombre);
 								$('#al_carrera').html(jsonResponse[0].Carrera);
+								$('#al_fechasol').html(jsonResponse[0].Fecha);
+
 							}
 							else{
 								console.log("Error");
@@ -59,7 +59,3 @@ $(document).ready(function() {
                 +message
               +'</div>';
 };
-
-
-
-
