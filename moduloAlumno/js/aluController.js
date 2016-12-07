@@ -1,9 +1,6 @@
 $(document).ready(function() {
-/* Hide elements */
-	$('#folioTrue').hide();
-	$('#folioFalse').hide();
-	$('#alertFolio').hide();
-	//$('#infoBasica').hide();
+
+hideElements();
 
 	$(".rFolio").click(function(event){
 	    var valor = $(event.target).val();
@@ -11,6 +8,7 @@ $(document).ready(function() {
 	    	console.log('Opcion Tengo Folio.');
 			$('#folioTrue').show();
 			$('#folioFalse').hide();
+
 				$('form.formInfoBasica').submit(function(e){
 					e.preventDefault();
 					var FOLIO  =  document.getElementById('alFolio').value;
@@ -18,30 +16,28 @@ $(document).ready(function() {
 						type: 'POST',
 						url: 'php/getInfoBasicAlumno.php',
 						data: {'folio': FOLIO},
+
 						success: function(respuesta){
 							console.log(respuesta);
 							var jsonResponse  = jQuery.parseJSON(respuesta);
 							console.log(jsonResponse);
-							if(respuesta.length > 3 ){
-								console.log('Json successfully');								
+							if(respuesta.length > 18 ){
+								console.log('Json successfully');	
+
 								var jsonResponse  = jQuery.parseJSON(respuesta);
-								console.log(jsonResponse[0].Folio);
-								$('#alertFolio').show();
-								$('#infoBasica').show();
-								$("#alertFolio").html(getAlert('Correcto, Folio encontrado: '+jsonResponse[0].Folio, 'success', 1));
-
+								console.log(jsonResponse.infobasica.Folio);
+								$('#alertFolio').show().html(getAlert('Correcto, Folio encontrado', 'success', 1));
+								$("#infoBasica").fadeIn("slow");
 								/*MOSTRANDO DATOS DEL ALUMNO*/
-
-								$('#al_folio').html(jsonResponse[0].Folio);
-								$('#al_nombre').html(jsonResponse[0].Nombre);
-								$('#al_carrera').html(jsonResponse[0].Carrera);
-								$('#al_fechasol').html(jsonResponse[0].Fecha);
-
+								setInfoBasica(jsonResponse.infobasica);
+								$( "#sig" ).show().prop( "disabled", false );
+								 $("#alertFolio").fadeOut(5000);						
 							}
 							else{
 								console.log("Error");
-								$('#alertFolio').show();
-								$("#alertFolio").html(getAlert('Folio No Encontrado', 'danger', 1));
+								$('#alertFolio').show().html(getAlert('Folio No Encontrado', 'danger', 1)).fadeOut(5000);
+								$('#infoBasica').hide();
+								clearElements();
 							}
 						}
 					})
@@ -58,4 +54,24 @@ $(document).ready(function() {
       return  '<div class="alert alert-'+type+' '+ (parseInt(centerText)?'text-center':'')+'">'
                 +message
               +'</div>';
+};
+
+hideElements =  function(){
+	/* Hide elements */
+	$('#folioTrue').hide();
+	$('#folioFalse').hide();
+	$('#alertFolio').hide();
+	$('#infoBasica').hide();
+	$( "#sig" ).hide().prop( "disabled", true );
+};
+
+clearElements = function(){
+	$('#alFolio').val('');
+}
+
+setInfoBasica = function(infobasica){
+	$('#al_folio').html(infobasica.Folio);
+	$('#al_nombre').html(infobasica.Nombre);
+	$('#al_carrera').html(infobasica.Carrera);
+	$('#al_fechasol').html(infobasica.Fecha);
 };

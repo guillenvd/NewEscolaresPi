@@ -33,7 +33,11 @@
     });
 
 
-
+			/*
+			$('#alFolio').click(function(event){
+				 $('.conoces').animate({ 'marginTop' : "-=60px" /*moves up });
+			});
+	       */
 						                         <div class="row" id="infoBasica">
 													<div class="col-sm-12">
 					                                	<h4 class="info-text">Información Básica</h4>
