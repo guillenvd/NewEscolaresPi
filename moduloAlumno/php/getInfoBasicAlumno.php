@@ -8,12 +8,10 @@ $alumno = array();
 	    while($row = $result->fetch_assoc()) {
 	    	$alumno =  array('Nombre' =>$row['nombre'],'Carrera' => $row['carrera'],'Fecha' =>$row['indice'],'Folio' =>$row['folio']);
 	    }
+		$arrayName = array('infobasica' => $alumno);
+		echo json_encode($arrayName);
 	}
-	else{
-	} 
 	$conn->close();
-	$arrayName = array('infobasica' => $alumno);
-	echo json_encode($arrayName);
 
 	//echo json_encode($return_arr);
 ?>
