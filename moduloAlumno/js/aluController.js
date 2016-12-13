@@ -3,7 +3,7 @@ $(document).ready(function() {
 hideElements();
 
 //Primera Fase  Buscar Folio:
-$(".rFolio").click(function(event){
+$(".rFicha").click(function(event){
 	   getInfoBasicaAlumno();
 	});
 
@@ -19,11 +19,10 @@ getInfoBasicaAlumno = function(){
 	 var valor = $(event.target).val();
 	    if(valor =="yes"){
 	    	console.log('Opcion Tengo Folio.');
-			$('#folioTrue').show();
-			$('#folioFalse').hide();
+			$('#fichaTrue').show();
 			$('form.formInfoBasica').submit(function(e){
 				e.preventDefault();
-				var FOLIO  =  document.getElementById('alFolio').value;
+				var FOLIO  =  document.getElementById('alFicha').value;
 				if (FOLIO > 0) {
 					$.ajax({
 						type: 'POST',
@@ -35,13 +34,13 @@ getInfoBasicaAlumno = function(){
 								var jsonResponse  = jQuery.parseJSON(respuesta);
 								console.log(jsonResponse);	
 								setInfoBasica(jsonResponse.infobasica);
-								$('#alertFolio').show().html(getAlert('Correcto, Folio encontrado', 'success', 1));
+								$('#alertFicha').show().html(getAlert('Correcto, Folio encontrado', 'success', 1));
 								$("#infoBasica").fadeIn("slow");
 								$('#sig').show().prop( "disabled", false );				
 							}
 							else{
 								console.log("Error");
-								$('#alertFolio').show().html(getAlert('Folio No Encontrado', 'danger', 1));
+								$('#alertFicha').show().html(getAlert('Folio No Encontrado', 'danger', 1));
 								$('#infoBasica').hide();
 								$('#sig').hide().prop( "disabled", false );
 							}
@@ -49,34 +48,31 @@ getInfoBasicaAlumno = function(){
 					}) //ajax end
 				} //end if Folio is empty
 				else{
-					$('#alertFolio').show().html(getAlert('Introducir folio.', 'danger', 1));
-					$('#searchFolio').addClass("has-error");
+					$('#alertFicha').show().html(getAlert('Introducir folio.', 'danger', 1));
+					$('#searchFicha').addClass("has-error");
 					$('#sig').hide().prop( "disabled", false );
 				}
 			});
-	    } else if (valor == "no") {
-	    	$('#folioFalse').show();
-			$('#folioTrue').hide();
 	    }
 };
 
 setInfoBasica = function(infobasica){
-	$('#al_folio').html(infobasica.Folio);
-	$('#al_nombre').html(infobasica.Nombre);
-	$('#al_carrera').html(infobasica.Carrera);
-	$('#al_fechasol').html(infobasica.Fecha);
+	// as = aspirante
+	$('#al_ficha').html(infobasica.asFicha);
+	$('#al_nombre').html(infobasica.asNombre);
+	$('#al_carrera').html(infobasica.asCarrera);
+	$('#al_fechasol').html(infobasica.asId);
 };
 
 hideElements =  function(){
 	/* Hide elements */
-	$('#folioTrue').hide();
-	$('#folioFalse').hide();
-	$('#alertFolio').hide();
+	$('#fichaTrue').hide();
+	$('#alertFicha').hide();
 	$('#infoBasica').hide();
 	$('#sig').hide().prop( "disabled", true );
 };
 
 clearElements = function(){
-	$('#alFolio').val('');
+	$('#alFicha').val('');
 }
 

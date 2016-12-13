@@ -36,7 +36,7 @@
 		                        	<h2 class="wizard-title">
 		                        		TECNOLÓGICO NACIONAL DE MÉXICO
 		                        	</h2>
-		                        		<h4>!Bienvenido a Departamento de Escolares!</h4>
+		                        		<h4>- Instituto Tecnologico de Ensenada -</h4>
 		                    	</div>
 								<div class="wizard-navigation">
 									<ul>
@@ -54,51 +54,37 @@
 												  <h4>AVISO:</h4>
 												  <p>Es importante llenar la información correctamente, ya que esto puede repercutir en el tu proceso de <strong class="text-danger">Reinscripción.</strong></p>
 												</div>
-												<div class="conoces col-sm-12">
-													<h5 class="info-text">¿Conoces Tu Número de Folio?</h5>
-												</div>
 												<div class="form-group">
-												  <div class="col-md-6">
-												    <div class="radio radio-primary">
-												      <label>
-												        <input class="rFolio" type="radio" name="optionsRadios" value="yes">
-												        <strong class="text-success">Tengo Folio.</strong>
-												      </label>
-												    </div>
-												  </div>
-												  <div class="col-md-6">
-												    <div class="radio radio-primary">
-												      <label>
-												        <input class="rFolio" type="radio" name="optionsRadios" value="no">
-												        <strong class="text-success">No Tengo Folio</strong>
-												      </label>
-												    </div>
-												  </div>
-												</div>
+											    <div class="radio radio-primary">
+											      <label>
+											        <input class="rFicha" type="radio" name="optionsRadios" value="yes">
+											        <strong class="text-success">Tengo Ficha.</strong>
+											      </label>
+											    </div>
+											  </div>
 		                                    </div>
 		                                </div>
-										<div id="folioTrue">
-											<div id="searchFolio" class="col-sm-12 form-group label-floating">
+										<div id="fichaTrue">
+											<div id="searchFicha" class="col-sm-12 form-group label-floating">
 											<form class="formInfoBasica col-sm-6">
 												  <div class="input-group">
-												  <label class="control-label" for="focusedInput1">Ingresa Número de Folio.</label>
-												  <input class="form-control" id="alFolio" name="alFolio" type="text">
+												  <label class="control-label" for="focusedInput1">Ingresa Número de Ficha.</label>
+												  <input class="form-control" id="alFicha" name="alFicha" type="text">
 												    <span class="input-group-btn">
-												        <button class="btn btn-danger" type="submit" id="btnFolio">Buscar</button>
+												        <button class="btn btn-danger" type="submit" id="btnFicha">Buscar</button>
 												    </span>
 												    <i class="fa fa-spinner fa-spin"></i>
 												  </div>
 											</form>
-												<!--Muestra mensaje: Folio encontrado o No encontrado-->
-												<p class="col-sm-4" id="alertFolio"></p>
+												<!--Muestra mensaje: FICHA encontrado o No encontrado-->
+												<p class="col-sm-4" id="alertFicha"></p>
 											</div>
-
-									<!--FORMULARIO DE INFORMACION BASICA DEL ALUMNO  Folio, Nombre, Carrera -->
+									<!--FORMULARIO DE INFORMACION BASICA DEL ALUMNO  FICHA, Nombre, Carrera -->
 										<div id="infoBasica"  class="col-sm-12">
 											<h3 class="wizard-header text-success">-INFORMACIÓN BÁSICA-</h3>
 											<div class="col-sm-12">
-												<h5 class="col-sm-3"><b># Folio:</b></h5>
-												<h4 id="al_folio" class="col-sm-9"></h4>
+												<h5 class="col-sm-3"><b># Ficha:</b></h5>
+												<h4 id="al_ficha" class="col-sm-9"></h4>
 											</div>
 											<div class="col-sm-12">
 												<h5 class="col-sm-3"><b>Nombre Completo:</b></h5>
@@ -113,13 +99,6 @@
 												<h4 id="al_fechasol" class="col-sm-9"></h4>
 											</div>
 										</div>
-										</div>
-										<div id="folioFalse">
-											<div class="col-sm-12">
-												<div id="alertFolio" class="alert alert-dismissible alert-danger">
-													<strong><h5>NO CUENTAS CON FOLIO</h5></strong>
-												</div>
-											</div>
 										</div>
 									</div><!--FIN DE VISTA INFORMACION BASICA-->
 									<div class="tab-pane" id="captain">

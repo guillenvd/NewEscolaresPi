@@ -1,12 +1,19 @@
 <?php 
 include("../../dist/php/conexion.php");
-$FOLIO = $_POST['folio'];
-$sqlGetTurno = "SELECT a.`id`, a.`nombre`, b.`nombre` AS `carrera`, a. `ficha_inscripcion` AS `folio`, a. `indice`FROM `alumnos` a INNER JOIN `carreras` b ON b.id = a.carrera  WHERE a. `ficha_inscripcion` = ".$FOLIO."";
+$FOLIO = 10; //$_POST['folio'];
+$sqlGetTurno = "SELECT `id_aspi` as 'ID_ASPIRANTE', `no_ficha` as 'NUMERO_FICHA' , `nombre_completo` as 'NOMBRE_COMPLETO', `carrera` as 'CARRERA' FROM `aspirantes` WHERE `no_ficha` = ".$FOLIO."";
+
+//"SELECT a.`id`, a.`nombre`, b.`nombre` AS `carrera`, a. `ficha_inscripcion` AS `folio`, a. `indice`FROM `alumnos` a INNER JOIN `carreras` b ON b.id = a.carrera  WHERE a. `ficha_inscripcion` = ".$FOLIO."";
+
 $alumno = array();
 	$result = $conn->query($sqlGetTurno); 
 	if ($result->num_rows > 0) {
 	    while($row = $result->fetch_assoc()) {
-	    	$alumno =  array('Nombre' =>$row['nombre'],'Carrera' => $row['carrera'],'Fecha' =>$row['indice'],'Folio' =>$row['folio']);
+	    	$alumno =  array(
+	    		'asId' =>$row['ID_ASPIRANTE'],
+	    		'asFicha' => $row['NUMERO_FICHA'],
+	    		'asNombre' =>$row['NOMBRE_COMPLETO'],
+	    		'asCarrera' =>$row['CARRERA']);
 	    }
 		$arrayName = array('infobasica' => $alumno);
 		echo json_encode($arrayName);
