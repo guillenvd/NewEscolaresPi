@@ -17,7 +17,6 @@ function getAlert (message, type = 'info', centerText = 0){
 
 getInfoBasicaAlumno = function(){
 	 var valor = $(event.target).val();
-	    if(valor =="yes"){
 	    	console.log('Opcion Tengo Folio.');
 			$('#fichaTrue').show();
 			$('form.formInfoBasica').submit(function(e){
@@ -53,7 +52,6 @@ getInfoBasicaAlumno = function(){
 					$('#sig').hide().prop( "disabled", false );
 				}
 			});
-	    }
 };
 
 setInfoBasica = function(infobasica){
