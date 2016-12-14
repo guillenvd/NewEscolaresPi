@@ -1,6 +1,6 @@
 <?php 
 include("../../dist/php/conexion.php");
-$FOLIO = 10; //$_POST['folio'];
+$FOLIO = $_POST['folio'];
 $sqlGetTurno = "SELECT `id_aspi` as 'ID_ASPIRANTE', `no_ficha` as 'NUMERO_FICHA' , `nombre_completo` as 'NOMBRE_COMPLETO', `carrera` as 'CARRERA' FROM `aspirantes` WHERE `no_ficha` = ".$FOLIO."";
 
 //"SELECT a.`id`, a.`nombre`, b.`nombre` AS `carrera`, a. `ficha_inscripcion` AS `folio`, a. `indice`FROM `alumnos` a INNER JOIN `carreras` b ON b.id = a.carrera  WHERE a. `ficha_inscripcion` = ".$FOLIO."";

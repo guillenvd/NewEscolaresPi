@@ -39,113 +39,136 @@
 		                        	<h2 class="wizard-title">
 		                        		TECNOLÓGICO NACIONAL DE MÉXICO
 		                        	</h2>
-		                        		<h4>- Instituto Tecnologico de Ensenada -</h4>
+		                        		<h4 style="font-size: 2em;">- Instituto Tecnológico de Ensenada -</h4>
 		                    	</div>
 								<div class="wizard-navigation">
 									<ul>
 			                            <li><a href="#details" data-toggle="tab">Datos del Alumno</a></li>
-			                            <li><a href="#captain" data-toggle="tab">Documentos Requeridos</a></li>
+			                            <li><a href="#documentos" data-toggle="tab">Documentos Requeridos</a></li>
 			                            <li><a href="#description" data-toggle="tab">Tu Turno es:</a></li>
 			                        </ul>
 								</div>
-		                        <div class="tab-content">
-		                            <div class="tab-pane" id="details">
-		                                <div class="row">
-		                                    <div class="col-sm-10 col-sm-offset-1">
-												<div id="aviso" class="alert alert-dismissible alert-warning">
-												  <button type="button" class="close" data-dismiss="alert">×</button>
-												  <h4>AVISO:</h4>
-												  <p>Es importante llenar la información correctamente, ya que esto puede repercutir en el tu proceso de <strong class="text-danger">Reinscripción.</strong></p>
-												</div>
-											<div class="col-sm-12">
-			                                    <div class="rFicha col-sm-offset-1 col-sm-5 hvr-grow-shadow btn btn-lg btn-warning">Iniciar Proceso de Reinscripción</div>
-			                                    </div>
-		                                    </div>
+                        <div class="tab-content">
+                            <div class="tab-pane" id="details">
 
-		                                </div>
-										<div id="fichaTrue">
-											<div id="searchFicha" class="col-sm-12 form-group label-floating">
-											<form class="formInfoBasica col-sm-6">
-												  <div class="input-group">
-												  <label class="control-label" for="focusedInput1">Ingresa Número de Ficha.</label>
-												  <input class="form-control" id="alFicha" name="alFicha" type="text">
-												    <span class="input-group-btn">
-												        <button class="btn btn-danger" type="submit" id="btnFicha">Buscar</button>
-												    </span>
-												    <i class="fa fa-spinner fa-spin"></i>
-												  </div>
-											</form>
-												<!--Muestra mensaje: FICHA encontrado o No encontrado-->
-												<p class="col-sm-4" id="alertFicha"></p>
-											</div>
-									<!--FORMULARIO DE INFORMACION BASICA DEL ALUMNO  FICHA, Nombre, Carrera -->
-										<div id="infoBasica"  class="col-sm-12">
-											<h3 class="wizard-header text-success">-INFORMACIÓN BÁSICA-</h3>
-											<div class="col-sm-12">
-												<h5 class="col-sm-3"><b># Ficha:</b></h5>
-												<h4 id="al_ficha" class="col-sm-9"></h4>
-											</div>
-											<div class="col-sm-12">
-												<h5 class="col-sm-3"><b>Nombre Completo:</b></h5>
-												<h4 id="al_nombre"class="col-sm-9"></h4>
-											</div>
-											<div class="col-sm-12">
-												<h5 class="col-sm-3"><b>Carrera:</b></h5>
-												<h4 id="al_carrera" class="col-sm-9"></h4>
-											</div>
-											<div class="col-sm-12">
-												<h5 class="col-sm-3"><b>Fecha de Solicitud:</b></h5>
-												<h4 id="al_fechasol" class="col-sm-9"></h4>
-											</div>
-										</div>
-										</div>
-									</div><!--FIN DE VISTA INFORMACION BASICA-->
-									<div class="tab-pane" id="captain">
-		                                <h4 class="info-text">What type of room would you want? </h4>
-		                                <div class="row">
-		                                    <div class="col-sm-10 col-sm-offset-1">
-		                                        <div class="col-sm-4">
-		                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="This is good if you travel alone.">
-		                                                <input type="radio" name="job" value="Design">
-		                                                <div class="icon">
-		                                                    <i class="material-icons">weekend</i>
-		                                                </div>
-		                                                <h6>Single</h6>
-		                                            </div>
-		                                        </div>
-		                                        <div class="col-sm-4">
-		                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this room if you're traveling with your family.">
-		                                                <input type="radio" name="job" value="Code">
-		                                                <div class="icon">
-		                                                    <i class="material-icons">home</i>
-		                                                </div>
-		                                                <h6>Family</h6>
-		                                            </div>
-		                                        </div>
-												<div class="col-sm-4">
-		                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you are coming with your team.">
-		                                                <input type="radio" name="job" value="Code">
-		                                                <div class="icon">
-		                                                    <i class="material-icons">business</i>
-		                                                </div>
-		                                                <h6>Business</h6>
-		                                            </div>
-		                                        </div>
-		                                    </div>
-		                                </div>
-		                            </div>
-		                        </div>
-	                        	<div class="wizard-footer">
-	                            	<div class="pull-right">
-	                                    <input id='sig' type='button' class='btn btn-next btn-fill btn-info btn-wd' name='next' value='Next' />
-	                                    <input type='button' class='btn btn-finish btn-fill btn-info btn-wd' name='finish' value='Finish' />
-	                                </div>
-	                                <div class="pull-left">
-	                                    <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
+								<div class="row"  id="indicaciones">
+									<div class="col-sm-12 col-sm-offset-1">
+										<h4 class="text-warning">Indicaciones:</h4>
+										<p class="text-muted">1.- Utiliza tu <strong class="text-primary">Número de ficha </strong>para buscar tu Información Básica en el sistema. (Nombre Completo, Carrera, Fecha).
+										<br>2.- El número de Ficha lo puedes localizar en el <strong class="text-primary">Comprobante de Pago </strong>que el banco te proporcionó al realizar el pago correspondiente.
+										<br>3.- Una vez hayas localizado tu número de ficha podrás dar inicio a tu <strong class="text-primary">Inscripción.</strong>.
+										</p>
+									</div>
+									<div class="rFicha hvr-float-shadow col-sm-4 col-md-offset-4" data-toggle="modal" data-target="#myModal">
+										<h5><b>Iniciar Proceso de Reinscripción</b></h5>
+									</div>
 
-	                                </div>
-	                                <div class="clearfix"></div>
-	                        	</div>
+								</div>
+								<!-- Modal -->
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								        <h4 class="modal-title text-warning" id="myModalLabel"><center><b>¡AVISO IMPORTANTE!</b></center></h4>
+								      </div>
+								      <div class="modal-body">
+								       <p style="font-size: 1.1em; text-align: justify;">Es importante llenar la información correctamente, ya que esto puede repercutir en tu proceso de <strong class="text-danger">Reinscripción</strong>.  Recuerda que todo tu registro será analizado por el personal del Depto. Escolares, si hay alguna incongruencia, tu proceso sera <strong class='text-danger'>Cancelado</strong>.<br><br>
+								       En caso de tener problemas tu ficha y no muestra tu información, intenta nuevamente; si el error continua contacta a Soporte Técnico.<br> 
+								       </p>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="entendido btn btn-warning" data-dismiss="modal">Entendido</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+
+								<div id="fichaTrue">
+									<div id="searchFicha" class="col-sm-12 form-group label-floating">
+									<form class="formInfoBasica col-sm-6">
+										  <div class="input-group">
+										  <label class="control-label" for="focusedInput1">Ingresa Número de Ficha.</label>
+										  <input class="form-control" id="alFicha" name="alFicha" type="text">
+										    <span class="input-group-btn">
+										        <button class="btn btn-danger" type="submit" id="btnFicha">Buscar</button>
+										    </span>
+										    <i class="fa fa-spinner fa-spin"></i>
+										  </div>
+									</form>
+										<!--Muestra mensaje: FICHA encontrado o No encontrado-->
+										<p class="col-sm-4" id="alertFicha"></p>
+									</div>
+							<!--FORMULARIO DE INFORMACION BASICA DEL ALUMNO  FICHA, Nombre, Carrera -->
+								<div id="infoBasica"  class="col-sm-12">
+									<h3 class="wizard-header text-success">-INFORMACIÓN BÁSICA-</h3>
+									<div class="col-sm-12">
+										<h5 class="col-sm-3"><b># Ficha:</b></h5>
+										<h4 id="al_ficha" class="col-sm-9"></h4>
+									</div>
+									<div class="col-sm-12">
+										<h5 class="col-sm-3"><b>Nombre Completo:</b></h5>
+										<h4 id="al_nombre"class="col-sm-9"></h4>
+									</div>
+									<div class="col-sm-12">
+										<h5 class="col-sm-3"><b>Carrera:</b></h5>
+										<h4 id="al_carrera" class="col-sm-9"></h4>
+									</div>
+									<div class="col-sm-12">
+										<h5 class="col-sm-3"><b>Fecha de Solicitud:</b></h5>
+										<h4 id="al_fechasol" class="col-sm-9"></h4>
+									</div>
+								</div>
+								</div>
+							</div><!--FIN DE VISTA INFORMACION BASICA-->
+							<div class="tab-pane" id="documentos">
+                                <h4 class="info-text">Revision de Documentos </h4>
+                                <div class="row">
+                                    <div class="col-sm-10 col-sm-offset-1">
+                                        <div class="col-sm-4">
+                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="This is good if you travel alone.">
+                                                <input type="radio" name="job" value="Design">
+                                                <div class="icon">
+                                                    <i class="material-icons">weekend</i>
+                                                </div>
+                                                <h6>Single</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this room if you're traveling with your family.">
+                                                <input type="radio" name="job" value="Code">
+                                                <div class="icon">
+                                                    <i class="material-icons">home</i>
+                                                </div>
+                                                <h6>Family</h6>
+                                            </div>
+                                        </div>
+										<div class="col-sm-4">
+                                            <div class="choice" data-toggle="wizard-radio" rel="tooltip" title="Select this option if you are coming with your team.">
+                                                <input type="radio" name="job" value="Code">
+                                                <div class="icon">
+                                                    <i class="material-icons">business</i>
+                                                </div>
+                                                <h6>Business</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+	                    	<div class="wizard-footer">
+	                        	<div class="pull-right">
+	                                <input id='sig' type='button' class='btn btn-next btn-fill btn-info btn-wd' name='next' value='Siguiente' />
+	                                <input type='button' class='btn btn-finish btn-fill btn-info btn-wd' name='finish' value='Finish' />
+	                            </div>
+	                            <div class="pull-left">
+	                                <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Atrás' />
+
+	                            </div>
+	                            <div class="clearfix"></div>
+	                    	</div>
 		                </div>
 		            </div> <!-- wizard container -->
 		        </div>

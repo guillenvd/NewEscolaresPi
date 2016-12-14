@@ -3,8 +3,9 @@ $(document).ready(function() {
 hideElements();
 
 //Primera Fase  Buscar Folio:
-$(".rFicha").click(function(event){
-	   getInfoBasicaAlumno();
+$(".entendido").click(function(event){
+		outIndicaciones();
+		getInfoBasicaAlumno();
 	});
 
 });// Document ready
@@ -18,10 +19,10 @@ function getAlert (message, type = 'info', centerText = 0){
 getInfoBasicaAlumno = function(){
 	 var valor = $(event.target).val();
 	    	console.log('Opcion Tengo Folio.');
-			$('#fichaTrue').show();
+			$('#fichaTrue').fadeIn(2000);
 			$('form.formInfoBasica').submit(function(e){
 				e.preventDefault();
-				var FOLIO  =  document.getElementById('alFicha').value;
+				var FOLIO  =  $.trim(document.getElementById('alFicha').value);
 				if (FOLIO > 0) {
 					$.ajax({
 						type: 'POST',
@@ -53,6 +54,11 @@ getInfoBasicaAlumno = function(){
 				}
 			});
 };
+
+
+function outIndicaciones(){
+	$("#indicaciones").fadeOut(1500);
+}
 
 setInfoBasica = function(infobasica){
 	// as = aspirante
