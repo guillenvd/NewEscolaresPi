@@ -2,11 +2,15 @@ $(document).ready(function() {
 
 hideElements();
 
+getDocumentosRequeridos();
 //Primera Fase  Buscar Folio:
 $(".entendido").click(function(event){
 		outIndicaciones();
 		getInfoBasicaAlumno();
 	});
+
+
+
 
 });// Document ready
 
@@ -54,6 +58,28 @@ getInfoBasicaAlumno = function(){
 				}
 			});
 };
+
+getDocumentosRequeridos = function () {
+					$.ajax({
+						type: 'GET',
+						url: 'php/getDocRequeridos.php',
+						success: function(respuesta){
+							console.log(respuesta.length); 
+							if(respuesta.length > 1 ){
+								var jsonResponse  = jQuery.parseJSON(respuesta);
+								console.log(jsonResponse);	
+					$('#documentos #doc0').html(jsonResponse.Documento[0].Documento);
+                    $('#documentos #doc1').html(jsonResponse.Documento[1].Documento);
+                    $('#documentos #doc2').html(jsonResponse.Documento[2].Documento);
+                    $('#documentos #doc3').html(jsonResponse.Documento[3].Documento);			
+							}
+							else{
+								console.log("Error");
+							}
+						}
+					}) //ajax end
+}
+
 
 
 function outIndicaciones(){
