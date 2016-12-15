@@ -151,6 +151,7 @@
 .ac-list ol {
 	list-style: square;
 	list-style-position: outside;
+	width: 4500px;
 }
 
 .ac-list ol li {

@@ -2493,11 +2493,6 @@ footer .pull-center {
 /* PERSONAL STYLES */
 
 
-ol#indica{
-  list-style-type: decimal;
-  text-align: justify;
-}
-
 .fa{
   display: none;
 }
