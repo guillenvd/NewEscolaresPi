@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   	<title>Reinscripciones ITE :: Modulo Alumnos</title>
 	<link rel="stylesheet" type="text/css" href="../dist/animated/css/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="../dist/animated/css/demo.css" />
-	<link rel="stylesheet" type="text/css" href="../dist/animated/css/component.css" />
+|	<link rel="stylesheet" type="text/css" href="../dist/animated/css/component.css" />
 	<link rel="stylesheet" href="css/font.css">
   	<link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
   	<link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
@@ -47,14 +46,13 @@
 		                    	</div>
 								<div class="wizard-navigation">
 									<ul>
-			                            <li><a href="#details" data-toggle="tab">Datos del Alumno</a></li>
-			                            <li><a href="#documentos" data-toggle="tab">Documentos Requeridos</a></li>
-			                            <li><a href="#description" data-toggle="tab">Tu Turno es:</a></li>
+			                            <li class="wli"><a id="infBasic" href="#infoAlBasic" data-toggle="tab">Datos del Alumno</a></li>
+			                            <li class="wli"><a id="docsReq" href="#documentos" data-toggle="tab">Documentos Requeridos</a></li>
+			                            <li class="wli"><a id="miTurno" href="#description" data-toggle="tab">Tu Turno es:</a></li>
 			                        </ul>
 								</div>
                         <div class="tab-content">
-                            <div class="tab-pane" id="details">
-
+                            <div class="tab-pane" id="infoAlBasic">
 								<div class="row"  id="indicaciones">
 									<div class="col-sm-12 col-sm-offset-1">
 										<h4 class="text-warning">Indicaciones:</h4>
@@ -127,29 +125,47 @@
 								</div>
 								</div>
 							</div><!--FIN DE VISTA INFORMACION BASICA-->
-							<div class="tab-pane" id="documentos">
-                                <h4 class="info-text">Revision de Documentos </h4>
-                                <div class="row">
-                                    <div class="col-sm-10 col-sm-offset-1">
-									<section id="documentos">
-										<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
-											<ol>
-												<li>
-													<input id="cb18" name="cb18" type="checkbox">
-													<label for="cb18"><span id="doc0"></span></label>
-												</li>
-												<li><input id="cb19" name="cb19" type="checkbox"><label for="cb19">
-												<span id="doc1"></span></label></li>
-												<li><input id="cb20" name="cb20" type="checkbox"><label for="cb20">
-												<span id="doc2"></span></label></li>
-												<li><input id="cb21" name="cb21" type="checkbox"><label for="cb21">
-												<span id="doc3"></span></label></li>
-											</ol>
-										</form>
-									</section>
-                                    </div>
-                                </div>
+
+<!--INICIO DE REVISION DE DOCUMENTOS-->
+					<div class="tab-pane" id="documentos">   
+						<div class="col-sm-10  col-sm-offset-1 alert alert-dismissible alert-info">
+							<h4 class="info-text"><strong>Revisión de Documentos Requeridos</strong></h4>
+							  <p>A continuación se mostrarán una lista de 4 documentos que son obligatorios traer contigo para continuar con tu reinscripción.<br>
+							  1. Comprobante de Ficha de Pago. <br>2. Solicitud de Inscripcion.<br>3. Contrato ITE.<br>4. Número de Seguro Social.
+							  <br><br><b>Instrucciones:</b>
+							  <br>Da click sobre el nombre del documento para marcarlo como completado.<br>
+							  </p><br>
+							  <a class="iniciar_rev col-sm-3 btn btn-raised btn-primary">Iniciar Revisión</a>
+							  <a href="http://escolarespi.dev/moduloAlumno/" class="cancelar_rev col-sm-3 btn btn-raised btn-danger">Cancelar Revisión</a>
+						</div>
+
+                        <div class="row" id="docs">
+                            <div class="col-sm-10 col-sm-offset-1">
+								<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+									<ol>
+										<li>
+											<input id="cb18" name="cb18" type="checkbox" value="1">
+											<label for="cb18"><span id="doc0"></span></label>
+										</li>
+										<li>
+											<input id="cb19" name="cb19" type="checkbox" value="1">
+											<label for="cb19"><span id="doc1"></span></label>
+										</li>
+										<li>
+											<input id="cb20" name="cb20" type="checkbox" value="1">
+											<label for="cb20"><span id="doc2"></span></label>
+										</li>
+										<li>
+											<input id="cb21" name="cb21" type="checkbox" value="1">
+											<label for="cb21"><span id="doc3"></span></label>
+										</li>
+									</ol>
+								</form>
+								<a id="terminar_rev" class="btn btn-raised btn-success">Terminar Revision</a>
                             </div>
+                        </div>
+                    </div><!--FIN DE REVISION DE DOCUMENTOS-->
+
                         </div>
 	                    	<div class="wizard-footer">
 	                        	<div class="pull-right">
@@ -157,7 +173,7 @@
 	                                <input type='button' class='btn btn-finish btn-fill btn-info btn-wd' name='finish' value='Finish' />
 	                            </div>
 	                            <div class="pull-left">
-	                                <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Atrás' />
+	                                <input id="atras" type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Atrás' />
 
 	                            </div>
 	                            <div class="clearfix"></div>

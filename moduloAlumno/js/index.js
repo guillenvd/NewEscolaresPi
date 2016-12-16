@@ -503,7 +503,7 @@ $(window).resize(function(){
 });
 
 function refreshAnimation($wizard, index){
-    total_steps = $wizard.find('li').length;
+    total_steps = $wizard.find('li.wli').length;
     move_distance = $wizard.width() / total_steps;
     step_width = move_distance;
     move_distance *= index;

@@ -1,18 +1,21 @@
 $(document).ready(function() {
 
 hideElements();
-
-getDocumentosRequeridos();
+getListaDoc();
 //Primera Fase  Buscar Folio:
 $(".entendido").click(function(event){
 		outIndicaciones();
 		getInfoBasicaAlumno();
 	});
 
-
-
+$('.iniciar_rev').click(function(event){
+		sendDocumentosRequeridos();
+	});
 
 });// Document ready
+
+
+
 
 function getAlert (message, type = 'info', centerText = 0){
       return  '<div class="alert alert-'+type+' '+ (parseInt(centerText)?'text-center':'')+'">'
@@ -40,7 +43,13 @@ getInfoBasicaAlumno = function(){
 								setInfoBasica(jsonResponse.infobasica);
 								$('#alertFicha').show().html(getAlert('Correcto, Folio encontrado', 'success', 1));
 								$("#infoBasica").fadeIn("slow");
-								$('#sig').show().prop( "disabled", false );				
+								$('#sig').show().prop( "disabled", false );
+
+								$('#sig').click(function(event){
+										$('#sig').hide();
+										$('#infBasic').bind('click', false);
+										$('#docsReq').unbind('click', false);
+									});
 							}
 							else{
 								console.log("Error");
@@ -57,9 +66,12 @@ getInfoBasicaAlumno = function(){
 					$('#sig').hide().prop( "disabled", false );
 				}
 			});
+	$('#sig').hide().attr("disabled", true);
+
+
 };
 
-getDocumentosRequeridos = function () {
+getListaDoc = function () {
 					$.ajax({
 						type: 'GET',
 						url: 'php/getDocRequeridos.php',
@@ -81,6 +93,26 @@ getDocumentosRequeridos = function () {
 }
 
 
+sendDocumentosRequeridos = function(){
+	$('#docs').show("slow");
+	$('.iniciar_rev').attr("disabled", true);
+	var docsChecks = 0;
+	var value;
+	$('#terminar_rev').click(function(event){
+		$("input:checkbox:checked").each(function(){
+			value = $(this).is( '1' ) ? 1 : 1;
+			docsChecks = docsChecks + value;
+			console.log(docsChecks);
+		});
+		if (docsChecks == 4){
+			console.log(infobasica.asNombre);
+			console.log('Documentos Completados.');
+		}
+
+		docsChecks = 0;
+		value = 0;
+	});
+}
 
 function outIndicaciones(){
 	$("#indicaciones").fadeOut(1500);
@@ -99,7 +131,12 @@ hideElements =  function(){
 	$('#fichaTrue').hide();
 	$('#alertFicha').hide();
 	$('#infoBasica').hide();
-	$('#sig').hide().prop( "disabled", true );
+	$('#docs').hide();
+	$('#sig').hide().attr("disabled", true);
+	//$('#docsReq').bind('click', false);
+	///$('#miTurno').bind('click', false);
+	//$('#infBasic').bind('click', false);
+
 };
 
 clearElements = function(){
