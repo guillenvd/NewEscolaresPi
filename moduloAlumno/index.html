@@ -128,19 +128,15 @@
 
 <!--INICIO DE REVISION DE DOCUMENTOS-->
 					<div class="tab-pane" id="documentos">   
-						<div class="col-sm-10  col-sm-offset-1 alert alert-dismissible alert-info">
+						<div id="avisoDocs" class="col-sm-10  col-sm-offset-1 alert alert-dismissible alert-info">
 							<h4 class="info-text"><strong>Revisión de Documentos Requeridos</strong></h4>
-							  <p>A continuación se mostrarán una lista de 4 documentos que son obligatorios traer contigo para continuar con tu reinscripción.<br>
+							  <p>A continuación se mostrarán una lista de 4 documentos que son obligatorios traer para continuar con tu reinscripción.<br>
 							  1. Comprobante de Ficha de Pago. <br>2. Solicitud de Inscripcion.<br>3. Contrato ITE.<br>4. Número de Seguro Social.
-							  <br><br><b>Instrucciones:</b>
-							  <br>Da click sobre el nombre del documento para marcarlo como completado.<br>
-							  </p><br>
-							  <a class="iniciar_rev col-sm-3 btn btn-raised btn-primary">Iniciar Revisión</a>
-							  <a href="http://escolarespi.dev/moduloAlumno/" class="cancelar_rev col-sm-3 btn btn-raised btn-danger">Cancelar Revisión</a>
 						</div>
-
-                        <div class="row" id="docs">
+                        <div class="row" id="checkDocs">
                             <div class="col-sm-10 col-sm-offset-1">
+                            	<h4 class="text-warning">Instrucciones:</h4>
+								<p class="text-muted">Da click sobre el nombre del documento para marcarlo como completado.</p>
 								<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
 									<ol>
 										<li>
@@ -161,9 +157,13 @@
 										</li>
 									</ol>
 								</form>
-								<a id="terminar_rev" class="btn btn-raised btn-success">Terminar Revision</a>
+							
                             </div>
                         </div>
+                        <div class="col-sm-9 col-sm-offset-3">
+                        	  <a id="btnDocumentos" class="iniciar_rev col-sm-4 btn btn-raised btn-primary">Iniciar Revisión</a>
+							  <a href="http://escolarespi.dev/moduloAlumno/" class="cancelar_rev col-sm-4 btn btn-raised btn-danger">Cancelar Revisión</a>
+						</div>
                     </div><!--FIN DE REVISION DE DOCUMENTOS-->
 
                         </div>
