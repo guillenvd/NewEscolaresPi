@@ -2,6 +2,10 @@ $(document).ready(function() {
 
 hideElements();
 getListaDoc();
+
+
+
+
 //Primera Fase  Buscar Folio:
 $(".entendido").click(function(event){
 		outIndicaciones();
@@ -38,7 +42,7 @@ getInfoBasicaAlumno = function(){
 							if(respuesta.length > 1 ){
 								var jsonResponse  = jQuery.parseJSON(respuesta);
 								setInfoBasica(jsonResponse.infobasica);
-								$('#alertFicha').show().html(getAlert('Correcto, Folio encontrado', 'success', 1));
+								$('#alertFicha').show().html(getAlert('Correcto, Ficha encontrado', 'success', 1));
 								$("#infoBasica").fadeIn("slow");
 								$('#sig').show().prop( "disabled", false );
 
@@ -50,22 +54,23 @@ getInfoBasicaAlumno = function(){
 										$('#docsReq').unbind('click', false);
 
 										$('.iniciar_rev').click(function(event){
-											$('#avisoDocs').slideUp(2000);
+											$('#avisoDocs').slideUp("slow");
+											$('.iniciar_rev').hide();
 											checkDocsRequeridos(jsonResponse.infobasica);
 										});										
 								});
 							}
 							else{
 								console.log("Error");
-								$('#alertFicha').show().html(getAlert('Folio No Encontrado', 'danger', 1));
+								$('#alertFicha').show().html(getAlert('Ficha No Encontrado', 'danger', 1));
 								$('#infoBasica').hide();
 								$('#sig').hide().prop( "disabled", false );
 							}
 						}
 					}) //ajax end
-				} //end if Folio is empty
+				} //end if Ficha is empty
 				else{
-					$('#alertFicha').show().html(getAlert('Introducir folio.', 'danger', 1));
+					$('#alertFicha').show().html(getAlert('Introducir Ficha.', 'danger', 1));
 					$('#searchFicha').addClass("has-error");
 					$('#sig').hide().prop( "disabled", false );
 				}
@@ -75,8 +80,8 @@ getInfoBasicaAlumno = function(){
 
 checkDocsRequeridos = function(infobasica){
 	console.log('checkDocsRequeridos');
-	$('#checkDocs').delay(2000).slideDown(2000);
-	$('#btnDocumentos').removeClass('iniciar_rev').addClass('terminar_rev').empty().html('Confirmar Documentos').attr("disabled", true);
+	$('#checkDocs').delay(1000).slideDown("slow");
+	$('#btnDocumentos').removeClass('iniciar_rev').addClass('terminar_rev').empty().html('Confirmar Documentos').attr("disabled", true).show();
 	var countChecks = 0;
 	var asEstado = 1;
 	$(':checkbox').click(function(){
@@ -108,25 +113,20 @@ confirmDocsRequeridos = function(infobasica, asEstado){
            url: 'php/changeStatus.php',
            data: currentFicha,
            beforeSend: function(){
-               alert('Estamos procesando tu informacion. Documentos guardados. Generando Turno....');
+				$('.waitChange').show();
+				$('.newStatus').hide();
+				$('#showStatus').modal('show');
            },
            success: function(respuesta){
-				/*$.ajax({
-				type:'POST',
-				url: 'php/showEstado.php',
-				data: currentFicha,
-				beforeSend: function(){
-				console.log('Buscando Estado');
-				},
-				success: function(respuesta){
-				var jsonResponse  = jQuery.parseJSON(respuesta);
+           		var jsonResponse  = jQuery.parseJSON(respuesta);
 				console.log(jsonResponse);
-				alert('Correcto.... Tu estado es:');
-				alert(jsonResponse.Estado.asEstado);
-				}
-				});
+				$('.waitChange').hide();
+				$('.newStatus').show().html('Tu Estado es: '+jsonResponse.Estado.asEstado.toString());
+				$('#showStatus').delay(3000).modal('hide');
+				$('#miTurno').click();
+				$('.miTurnoEs').html(jsonResponse.Estado.asNombre +' tu turno es:');
+				$('#finalizar').hide();
 
-*/
            }
        });
 }
@@ -178,6 +178,8 @@ hideElements =  function(){
 	$('#sig').hide();
 	$('#sig').attr("disabled", true);
 	$('#atras').hide().attr("disabled", true);
+	$('#finalizar').hide();
+
 	//$('#docsReq').bind('click', false);
 	///$('#miTurno').bind('click', false);
 	//$('#infBasic').bind('click', false);

@@ -48,7 +48,7 @@
 									<ul>
 			                            <li class="wli"><a id="infBasic" href="#infoAlBasic" data-toggle="tab">Datos del Alumno</a></li>
 			                            <li class="wli"><a id="docsReq" href="#documentos" data-toggle="tab">Documentos Requeridos</a></li>
-			                            <li class="wli"><a id="miTurno" href="#description" data-toggle="tab">Tu Turno es:</a></li>
+			                            <li class="wli"><a id="miTurno" href="#turno" data-toggle="tab">Tu Turno es:</a></li>
 			                        </ul>
 								</div>
                         <div class="tab-content">
@@ -166,11 +166,39 @@
 						</div>
                     </div><!--FIN DE REVISION DE DOCUMENTOS-->
 
-                        </div>
+							<!-- Modal -->
+
+							<div class="modal fade" id="showStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							        <h4 class="modal-title text-success" id="myModalLabel"></h4>
+							      </div>
+							      <div class="modal-body">
+							       <p style="font-size: 3em; text-align: center;"> 
+											<i class="waitChange fa fa-spinner fa-spin" style="display: inline-block;"></i>
+							     			<strong class="newStatus text-danger">estado</strong>
+							       </p>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-warning" data-dismiss="modal">ok</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+                            <div class="tab-pane" id="turno">
+                                <div class="row">
+                                    <h2 class="miTurnoEs info-text"></h2>
+                                    <center><strong><h1 class="text-info" style="font-size: 8em;">#201619</h1></strong></center>
+                                </div>
+                            </div>
+                        </div> <!-- Fin content -->
 	                    	<div class="wizard-footer">
 	                        	<div class="pull-right">
 	                                <input id='sig' type='button' class='btn btn-next btn-fill btn-info btn-wd' name='next' value='Siguiente' />
-	                                <input type='button' class='btn btn-finish btn-fill btn-info btn-wd' name='finish' value='Finish' />
 	                            </div>
 	                            <div class="pull-left">
 	                                <input id="atras" type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Atrás' />
