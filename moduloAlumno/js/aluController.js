@@ -28,11 +28,11 @@ function getAlert (message, type = 'info', centerText = 0){
 
 getInfoBasicaAlumno = function(){
 	console.log('getInfoBasicaAlumno');
-	 var valor = $(event.target).val();
-			$('#alFicha').delay(1700).fadeIn(2000);
+	// var valor = $(event.target).val();
+			$('#alFicha').show();
 			$('form.formInfoBasica').submit(function(e){
 				e.preventDefault();
-				$('#btnFicha').prop('disabled', true);
+				//$('#btnFicha').prop('disabled', true);
 				var FOLIO  =  $.trim(document.getElementById('alFicha').value);
 				if (FOLIO > 0) {
 					$.ajax({
@@ -46,10 +46,9 @@ getInfoBasicaAlumno = function(){
 								$('#alertFicha').show().html(getAlert('Correcto, Ficha encontrada', 'success', 1));
 								$("#infoBasica").fadeIn("slow");
 								$('#sig').show().prop( "disabled", false );
-
-
 								/*Start with the Step 2 - Revision de Documentos*/
 								$('#sig').click(function(event){
+									console.log(jsonResponse)
 										$('#sig').hide();
 										$('#infBasic').bind('click', false);
 										$('#docsReq').unbind('click', false);
@@ -61,7 +60,6 @@ getInfoBasicaAlumno = function(){
 											checkDocsRequeridos(jsonResponse.infobasica);
 										});										
 								});
-								//respuesta = '';
 							}
 							else{
 								console.log("#Ficha Failed");
@@ -106,6 +104,9 @@ confirmDocsRequeridos = function(infobasica, asEstado){
 	console.log('confirmDocsRequeridos');
 	var currentFicha = {
 			"ficha"  : infobasica.asFicha,
+			"carrera": infobasica.asCarrera,
+			"id"	 : infobasica.asId,
+			"nombre" : infobasica.asNombre,
 			"estado" : asEstado
 	};
 	$.ajax({
@@ -123,18 +124,37 @@ confirmDocsRequeridos = function(infobasica, asEstado){
 				$('.waitChange').hide();
 				$('.newStatus').show().html('Tu Estado es: '+jsonResponse.Estado.asEstado.toString());
 				$('#showStatus').delay(3000).modal('hide');
+				$('.nombreTurno').html(jsonResponse.Estado.asNombre +' tu turno es:');
+           }
+       });
+	generarTurno(currentFicha);
+}
+
+generarTurno = function(currentFicha){
+console.log('generarTurno');
+$.ajax({
+           type:'POST',
+           url: 'php/generarTurno.php',
+           data: currentFicha,
+           beforeSend: function(){
+
+           },
+           success: function(respuesta){
+           		var jsonResponse  = jQuery.parseJSON(respuesta);
+				console.log(jsonResponse);
 				$('#miTurno').unbind('click', false).click();
-				$('.miTurnoEs').html(jsonResponse.Estado.asNombre +' tu turno es:');
+				$('#tuTurno').empty().html(jsonResponse.turno);
 				$('#finalizar').hide();
 				$('#docsReq').bind('click', false);
            }
        });
 }
 
+
 function outIndicaciones(){
 	console.log('outIndicaciones');
 	$("#indicaciones").fadeOut(1500);
-	$("#fichaTrue").delay(1200).show(1500);
+	$("#fichaTrue").delay(1500).fadeIn('slow');
 }
 
 getListaDoc = function () {

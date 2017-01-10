@@ -56,13 +56,12 @@
 								<div class="row"  id="indicaciones">
 									<div class="col-sm-12 col-sm-offset-1">
 										<h4 class="text-warning">Indicaciones:</h4>
-										<p class="text-muted">1.- Utiliza tu <strong class="text-primary">Número de ficha </strong>para buscar tu Información Básica en el sistema. (Nombre Completo, Carrera, Fecha).
-										<br>2.- El número de Ficha lo puedes localizar en el <strong class="text-primary">Comprobante de Pago </strong>que el banco te proporcionó al realizar el pago correspondiente.
-										<br>3.- Una vez hayas localizado tu número de ficha podrás dar inicio a tu <strong class="text-primary">Inscripción.</strong>.
+										<p class="text-muted">1.- Utiliza tu <strong class="text-primary">Número de ficha </strong>para buscar tu Información Básica en el sistema. (Nombre Completo y Carrera).
+										<br>2.- Da click en el botón para iniciar tu proceso de <strong class="text-primary">Inscripción.</strong>.
 										</p>
 									</div>
 									<div class="rFicha hvr-float-shadow col-sm-4 col-md-offset-4" data-toggle="modal" data-target="#myModal">
-										<h5><b>Iniciar Proceso de Reinscripción</b></h5>
+										<h5><b>Iniciar Proceso de Inscripción</b></h5>
 									</div>
 
 								</div>
@@ -77,8 +76,8 @@
 								        <h4 class="modal-title text-warning" id="myModalLabel"><center><b>¡AVISO IMPORTANTE!</b></center></h4>
 								      </div>
 								      <div class="modal-body">
-								       <p style="font-size: 1.1em; text-align: justify;">Es importante llenar la información correctamente, ya que esto puede repercutir en tu proceso de <strong class="text-danger">Reinscripción</strong>.  Recuerda que todo tu registro será analizado por el personal del Depto. Escolares, si hay alguna incongruencia, tu proceso sera <strong class='text-danger'>Cancelado</strong>.<br><br>
-								       En caso de tener problemas tu ficha y no muestra tu información, intenta nuevamente; si el error continua contacta a Soporte Técnico.<br> 
+								       <p style="font-size: 1.1em; text-align: justify;">Es importante llenar la información correctamente, ya que esto puede repercutir en tu proceso de <strong class="text-danger">Inscripción</strong>.  Recuerda que todo tu registro será analizado por el personal del Departamento de Escolares, si hay alguna incongruencia, tu proceso se verá <strong class='text-danger'>afectado</strong>.<br><br>
+								       En caso de tener problemas tu ficha y no muestra tu información, intenta nuevamente; si el error persiste contacta a Soporte Técnico.<br> 
 								       </p>
 								      </div>
 								      <div class="modal-footer">
@@ -118,10 +117,6 @@
 										<h5 class="col-sm-3"><b>Carrera:</b></h5>
 										<h4 id="al_carrera" class="col-sm-9"></h4>
 									</div>
-									<div class="col-sm-12">
-										<h5 class="col-sm-3"><b>Fecha de Solicitud:</b></h5>
-										<h4 id="al_fechasol" class="col-sm-9"></h4>
-									</div>
 								</div>
 								</div>
 							</div><!--FIN DE VISTA INFORMACION BASICA-->
@@ -130,13 +125,16 @@
 					<div class="tab-pane" id="documentos">   
 						<div id="avisoDocs" class="col-sm-10  col-sm-offset-1 alert alert-dismissible alert-info">
 							<h4 class="info-text"><strong>Revisión de Documentos Requeridos</strong></h4>
-							  <p>A continuación se mostrarán una lista de 4 documentos que son obligatorios traer para continuar con tu reinscripción.<br>
+							  <p>A continuación se mostrarán una lista de 4 documentos que son obligatorios entregar para continuar con tu reinscripción.<br>
 							  1. Comprobante de Ficha de Pago. <br>2. Solicitud de Inscripcion.<br>3. Contrato ITE.<br>4. Número de Seguro Social.
 						</div>
                         <div class="row" id="checkDocs">
                             <div class="col-sm-10 col-sm-offset-1">
                             	<h4 class="text-warning">Instrucciones:</h4>
-								<p class="text-muted">Da click sobre el nombre del documento para marcarlo como completado.</p>
+								<p class="text-muted">Da click sobre el nombre del documento para marcarlo como completado.
+								<strong><br>*NOTA*</strong> Si no cuentas con todos los documentos, pasar a <strong class="text-primary">MOSTRADOR</strong>.
+
+								</p>
 								<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
 									<ol>
 										<li>
@@ -191,9 +189,12 @@
 							</div>
                             <div class="tab-pane" id="turno">
                                 <div class="row">
-                                    <h2 class="miTurnoEs info-text"></h2>
-                                    <center><strong><h1 class="text-info" style="font-size: 8em;">#12345</h1></strong></center>
+                                   <h2 class="nombreTurno info-text"></h2>
+		                           <center><strong>
+		                           <h1 id="tuTurno" class="text-info" style="font-size: 8em;">#12345</h1>
+		                           </strong></center>
                                 </div>
+                                 <a href="http://escolarespi.dev/moduloAlumno/" class="cancelar_rev col-sm-4 btn btn-raised btn-danger">Nuevo</a>
                             </div>
                         </div> <!-- Fin content -->
 	                    	<div class="wizard-footer">
