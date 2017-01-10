@@ -42,6 +42,8 @@ getInfoBasicaAlumno = function(){
 						success: function(respuesta){
 							if(respuesta.length > 1 ){
 								var jsonResponse  = jQuery.parseJSON(respuesta);
+								console.log(jsonResponse);
+								localStorage.setItem("alumnoData", JSON.stringify(jsonResponse.infobasica));
 								setInfoBasica(jsonResponse.infobasica);
 								$('#alertFicha').show().html(getAlert('Correcto, Ficha encontrada', 'success', 1));
 								$("#infoBasica").fadeIn("slow");
@@ -102,34 +104,46 @@ checkDocsRequeridos = function(infobasica){
 	});
 }
 
+function checkList() {
+	var returnBoolean = true;
+	 $('form.ac-checkbox ol li input').each( function(i, input){
+	 	 if( $(input).is(':checked') == false){ returnBoolean = false; return returnBoolean ; }  
+	 });
+	 return returnBoolean;
+}
+
 confirmDocsRequeridos = function(infobasica, asEstado){
 	console.log('confirmDocsRequeridos');
-	var currentFicha = {
-			"ficha"  : infobasica.asFicha,
-			"estado" : asEstado
-	};
-	$.ajax({
-           type:'POST',
-           url: 'php/changeStatus.php',
-           data: currentFicha,
-           beforeSend: function(){
-				$('.waitChange').show();
-				$('.newStatus').hide();
-				$('#showStatus').modal('show');
-           },
-           success: function(respuesta){
-           		var jsonResponse  = jQuery.parseJSON(respuesta);
-				console.log(jsonResponse);
-				$('.waitChange').hide();
-				$('.newStatus').show().html('Tu Estado es: '+jsonResponse.Estado.asEstado.toString());
-				$('#showStatus').delay(3000).modal('hide');
-				$('#miTurno').unbind('click', false).click();
-				$('.miTurnoEs').html(jsonResponse.Estado.asNombre +' tu turno es:');
-				$('#finalizar').hide();
-				$('#docsReq').bind('click', false);
-           }
-       });
+
+	if(checkList()){
+		var alumno = jQuery.parseJSON( window.localStorage.getItem('alumnoData') );
+		var currentFicha = {
+				"ficha"  : alumno.asFicha,
+				"asId"  : alumno.asId
+		};
+		$.ajax({
+	           type:'POST',
+	           url: 'php/altaAlumno.php',
+	           data: currentFicha,
+	           beforeSend: function(){
+					$('.waitChange').show();
+					$('.newStatus').hide();
+	           },
+	           success: function(respuesta){
+	           		var jsonResponse  = jQuery.parseJSON(respuesta);
+					$('.waitChange').hide();
+
+					$('#miTurno').unbind('click', false).click();
+					$('.miTurnoEs').html(alumno.asNombre+' TU TIEMPO DE ESPERA ES <INS>'+jsonResponse.tiempo+ '</INS>  MINUTOS Y TU TURNO ES:'+jsonResponse.turno);
+					$('#turnoNum').html('#'+jsonResponse.turno);
+
+					$('#finalizar').hide();
+					$('#docsReq').bind('click', false);
+	           }
+	       });
+	}
 }
+
 
 function outIndicaciones(){
 	console.log('outIndicaciones');

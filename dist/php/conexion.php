@@ -13,10 +13,15 @@ function getEstado($value) {
 	}
 }
 
-	$host = '31.220.104.130';
+	/*$host = '31.220.104.130';
 	$user = 'u657840993_pi';
 	$pw	  = 'escolarespi';
-	$db   = 'u657840993_newpi';
+	$db   = 'u657840993_newpi';*/
+
+	$host = 'localhost';
+	$user = 'root';
+	$pw	  = 'admin';
+	$db   = 'escolarespi';
 
 	$conn = new mysqli($host,$user,$pw,$db);
 

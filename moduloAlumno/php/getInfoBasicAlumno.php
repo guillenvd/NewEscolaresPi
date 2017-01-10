@@ -14,7 +14,7 @@ $alumno = array();
 	    		'asCarrera' =>$row['CARRERA']);
 	    }
 		$arrayName = array('infobasica' => $alumno);
-		echo json_encode($arrayName);
+		echo json_encode($arrayName, JSON_UNESCAPED_UNICODE);
 	}
 	$conn->close();
 
