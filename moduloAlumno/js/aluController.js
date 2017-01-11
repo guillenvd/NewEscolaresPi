@@ -3,9 +3,6 @@ $(document).ready(function() {
 hideElements();
 getListaDoc();
 
-
-
-
 //Primera Fase  Buscar Folio:
 $(".entendido").click(function(event){
 		outIndicaciones();
@@ -30,7 +27,9 @@ getInfoBasicaAlumno = function(){
 	console.log('getInfoBasicaAlumno');
 	// var valor = $(event.target).val();
 			$('#alFicha').show();
-			$('form.formInfoBasica').submit(function(e){
+};
+
+$('form.formInfoBasica').submit(function(e){
 				e.preventDefault();
 				//$('#btnFicha').prop('disabled', true);
 				var FOLIO  =  $.trim(document.getElementById('alFicha').value);
@@ -41,25 +40,13 @@ getInfoBasicaAlumno = function(){
 						data: {'folio': FOLIO},
 						success: function(respuesta){
 							if(respuesta.length > 1 ){
-								var jsonResponse  = jQuery.parseJSON(respuesta);
+								jsonResponse  = jQuery.parseJSON(respuesta);
 								setInfoBasica(jsonResponse.infobasica);
 								$('#alertFicha').show().html(getAlert('Correcto, Ficha encontrada', 'success', 1));
 								$("#infoBasica").fadeIn("slow");
 								$('#sig').show().prop( "disabled", false );
 								/*Start with the Step 2 - Revision de Documentos*/
-								$('#sig').click(function(event){
-									console.log(jsonResponse)
-										$('#sig').hide();
-										$('#infBasic').bind('click', false);
-										$('#docsReq').unbind('click', false);
-
-										$('.iniciar_rev').click(function(event){
-											$('#avisoDocs').slideUp("slow");
-											$('.iniciar_rev').hide();
-											$('#sig').hide();
-											checkDocsRequeridos(jsonResponse.infobasica);
-										});										
-								});
+								
 							}
 							else{
 								console.log("#Ficha Failed");
@@ -77,7 +64,19 @@ getInfoBasicaAlumno = function(){
 				}
 			});
 
-};
+$('#sig').click(function(event){
+	console.log(jsonResponse)
+		$('#sig').hide();
+		$('#infBasic').bind('click', false);
+		$('#docsReq').unbind('click', false);					
+});
+
+$('.iniciar_rev').click(function(event){
+	$('#avisoDocs').slideUp("slow");
+	$('.iniciar_rev').hide();
+	$('#sig').hide();
+	checkDocsRequeridos(jsonResponse.infobasica);
+});	
 
 checkDocsRequeridos = function(infobasica){
 	console.log('checkDocsRequeridos');
