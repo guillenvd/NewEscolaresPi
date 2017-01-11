@@ -144,7 +144,10 @@ confirmDocsRequeridos = function(infobasica, asEstado){
 	}
 }
 
-
+function reloadPageFinish(){
+	window.localStorage.clear();
+	window.location.reload();
+}
 function outIndicaciones(){
 	console.log('outIndicaciones');
 	$("#indicaciones").fadeOut(1500);

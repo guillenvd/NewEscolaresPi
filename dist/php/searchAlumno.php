@@ -5,7 +5,7 @@
 include("conexion.php");
 $Indice = '2015-11-03';//date("Y-m-d");// Fecha actual, ejemplo 2015-12-31 23:59:59
 
-$sqlGetTurno = "SELECT alumno.nombre as nombre, alumno.turno as turno, alumno.estado as estado, alumno.ficha_inscripcion as ficha, alumno.indice as indice, carreras.nombre as carrera from alumnos alumno inner join carreras on carreras.id = alumno.carrera and alumno.ficha_inscripcion =".(int)$_GET['Ficha']." order by alumno.indice limit 1";
+$sqlGetTurno = "SELECT aspirantes.nombre_completo AS nombre,  alumnos.id AS idAlumno ,aspirantes.carrera AS carrera, alumnos.turno, alumnos.estado,  alumnos.ficha_inscripcion ,  alumnos.indice AS indice ,  alumnos.ficha_inscripcion AS ficha FROM alumnos LEFT JOIN aspirantes ON ( aspirantes.id_aspi = alumnos.idAspirante) where alumnos.ficha_inscripcion =".(int)$_GET['Ficha']." order by alumnos.hora_inicio DESC limit 1";
 $alumno = array();
 $estado = 0;
 // ir por cantidad de alumnos
@@ -19,5 +19,5 @@ $estado = 0;
 	}
 $conn->close();
 	$arrayName = array('estado' => $estado ,'Alumno' => $alumno);
-	echo json_encode($arrayName);
+	echo json_encode($arrayName, JSON_UNESCAPED_UNICODE);
 ?>

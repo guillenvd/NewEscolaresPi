@@ -1,12 +1,13 @@
 // Global variable for the app we going to access to a
 var dropDowntemplate ='<div class="dropdown">'
                           +'<button class="btn btn-default dropdown-toggle" type="button" id="actionDropdown" data-toggle="dropdown">'
-                            +'Action '
+                            +'Cambiar estado '
                             +'<span class="caret"></span>'
                           +'</button>'
                           +'<ul class="dropdown-menu" aria-labelledby="actionDropdown">'
-                            +'<li action=\'1\'><a href="#">Cancelar</a></li>'
-                            +'<li action=\'1\'><a href="#">Atender</a></li>'
+                            +'<li action=\'1\'><a href="#">En espera</a></li>'
+                            +'<li action=\'2\'><a href="#">Atendido</a></li>'
+                            +'<li action=\'3\'><a href="#">No se presentó</a></li>'
                           +'</ul>'
                         +'</div>';
 
@@ -27,7 +28,7 @@ var EsperaController = (function() {
                                             { title: "# Ficha" },
                                             { title: "Turno" },
                                             { title: "Estado" },
-                                            { title: "Carreras" }
+                                            { title: "Carrera" }
                                         ],
                                     columnDefs: 
                                         [ 

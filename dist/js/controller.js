@@ -164,7 +164,10 @@ var Controller = (function() {
         case '#guia':
             $('div#page-wrapper.principal-container').load('taps/guia.html')
             
-        break;           default:
+        break;           
+        default:
+            window.location = '/pages/index.html#home'; 
+            window.location.reload();
             $('div#page-wrapper.principal-container').load('taps/home.html');
         break;
         }

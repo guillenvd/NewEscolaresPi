@@ -3,7 +3,7 @@
 include("conexion.php");
 
 $Indice = date("Y-m-d");// Fecha actual, ejemplo 2015-11-03 date("Y-m-d")
-$sqlGetLista = "SELECT alumnos.nombre,  alumnos.id AS idAlumno ,carreras.nombre AS CarreraNombre, alumnos.turno, alumnos.estado, alumnos.carrera, alumnos.ficha_inscripcion FROM alumnos LEFT JOIN carreras ON carreras.id = alumnos.carrera";
+$sqlGetLista = "SELECT aspirantes.nombre_completo AS nombre,  alumnos.id AS idAlumno ,aspirantes.carrera AS CarreraNombre, alumnos.turno, alumnos.estado,  alumnos.ficha_inscripcion FROM alumnos LEFT JOIN aspirantes ON ( aspirantes.id_aspi = alumnos.idAspirante) where alumnos.indice='".$Indice."' ";
 $return_arr = array();
 $array = array();
 $result = $conn->query($sqlGetLista); 
@@ -12,7 +12,7 @@ $result = $conn->query($sqlGetLista);
 	    array_push($return_arr,$array);
 	}
 $conn->close();
-	$array = json_encode($return_arr);
+	$array = json_encode($return_arr, JSON_UNESCAPED_UNICODE);
 	echo $array;
 
 
