@@ -3,18 +3,10 @@ $(document).ready(function() {
 hideElements();
 getListaDoc();
 
-//Primera Fase  Buscar Folio:
 $(".entendido").click(function(event){
 		outIndicaciones();
 		getInfoBasicaAlumno();
 	});
-
-/*
-$('.iniciar_rev').click(function(event){
-	$('#avisoDocs').slideUp(2000);
-	checkDocsRequeridos(getListaDoc());
-});		
-*/
 });// Document ready
 
 function getAlert (message, type = 'info', centerText = 0){
@@ -25,13 +17,11 @@ function getAlert (message, type = 'info', centerText = 0){
 
 getInfoBasicaAlumno = function(){
 	console.log('getInfoBasicaAlumno');
-	// var valor = $(event.target).val();
-			$('#alFicha').show();
+	$('#alFicha').show();
 };
 
 $('form.formInfoBasica').submit(function(e){
 				e.preventDefault();
-				//$('#btnFicha').prop('disabled', true);
 				var FOLIO  =  $.trim(document.getElementById('alFicha').value);
 				if (FOLIO > 0) {
 					$.ajax({
@@ -42,25 +32,28 @@ $('form.formInfoBasica').submit(function(e){
 							if(respuesta.length > 1 ){
 								jsonResponse  = jQuery.parseJSON(respuesta);
 								setInfoBasica(jsonResponse.infobasica);
-								$('#alertFicha').show().html(getAlert('Correcto, Ficha encontrada', 'success', 1));
+								$('#alertFicha').show().html(getAlert('Ficha Encontrada', 'info', 1));
 								$("#infoBasica").fadeIn("slow");
+								$('#alertFicha').delay(2500).fadeOut("slow");
 								$('#sig').show().prop( "disabled", false );
-								/*Start with the Step 2 - Revision de Documentos*/
-								
 							}
 							else{
 								console.log("#Ficha Failed");
-								$('#alertFicha').show().html(getAlert('# Ficha no encontrada', 'danger', 1));
-								$('#infoBasica').hide();
+								$('#alertFicha').show().html(getAlert('# Ficha No Encontrada', 'danger', 1));
+								$('#infoBasica').slideUp("slow");
 								$('#sig').hide().prop( "disabled", false );
+								$('#alertFicha').delay(2500).fadeOut("slow");
 							}
 						}
 					}) //ajax end
 				} //end if Ficha is empty
 				else{
-					$('#alertFicha').show().html(getAlert('Introducir Ficha.', 'danger', 1));
+					$('#alertFicha').show().html(getAlert('Debe Introducir Ficha Valida.', 'danger', 1));
+					$('#infoBasica').slideUp("slow");
 					$('#searchFicha').addClass("has-error");
 					$('#sig').hide().prop( "disabled", false );
+					$('#alertFicha').delay(2500).fadeOut("slow");
+
 				}
 			});
 
@@ -121,8 +114,7 @@ confirmDocsRequeridos = function(infobasica, asEstado){
            		var jsonResponse  = jQuery.parseJSON(respuesta);
 				console.log(jsonResponse);
 				$('.waitChange').hide();
-				$('.newStatus').show().html('Tu Estado es: '+jsonResponse.Estado.asEstado.toString());
-				$('#showStatus').delay(3000).modal('hide');
+				$('#showStatus').delay(10000).modal('hide');
 				$('.nombreTurno').html(jsonResponse.Estado.asNombre +' tu turno es:');
            }
        });
@@ -149,11 +141,10 @@ $.ajax({
        });
 }
 
-
 function outIndicaciones(){
 	console.log('outIndicaciones');
-	$("#indicaciones").fadeOut(1500);
-	$("#fichaTrue").delay(1500).fadeIn('slow');
+	$("#indicaciones").fadeOut(600);
+	$("#fichaTrue").delay(600).fadeIn('slow');
 }
 
 getListaDoc = function () {

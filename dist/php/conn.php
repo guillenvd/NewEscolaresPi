@@ -2,7 +2,7 @@
 	$host = 'localhost';
 	$user = 'root';
 	$pw	  = '';
-	$db   = 'escolarespi_db';
+	$db   = 'escolarespi';
 			$conn = mysqli_connect($host,$user,$pw,$db);
 			$conn->set_charset("utf8");
 			date_default_timezone_set('America/Tijuana');

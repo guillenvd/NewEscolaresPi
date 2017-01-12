@@ -2490,8 +2490,27 @@ footer .pull-center {
   }
 }
 
-
 /* PERSONAL STYLES */
+
+#alFicha{
+  text-align: center;
+  font-size: 3em;
+  height: 2em;
+}
+
+#alertFicha{
+  padding-bottom: 0em !important;
+  margin-bottom: 0em !important;
+  height: 1em;
+  z-index: 99999;
+}
+
+.ib-text{
+  text-align: right;
+  color: #607D8B;
+}
+
+
 
 #docs span {
   font-size: 1em;
