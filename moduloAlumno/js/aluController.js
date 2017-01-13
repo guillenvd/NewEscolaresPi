@@ -42,6 +42,7 @@ $('form.formInfoBasica').submit(function(e){
 			success: function(respuesta){
 				if(respuesta.length > 1 ){
 					jsonResponse  = jQuery.parseJSON(respuesta);
+					localStorage.setItem("alumnoData", JSON.stringify(jsonResponse.infobasica));
 					setInfoBasica(jsonResponse.infobasica);
 					$('#alertFicha').show().html(getAlert('Ficha Encontrada', 'info', 1));
 					$("#infoBasica").fadeIn("slow");
