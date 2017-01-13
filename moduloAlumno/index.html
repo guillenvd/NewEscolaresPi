@@ -87,41 +87,37 @@
 								    </div>
 								  </div>
 								</div>
-
 								<div id="fichaTrue">
 									<div id="searchFicha" class="col-sm-12 form-group label-floating">
-									<form class="formInfoBasica col-sm-6">
+									<form class="formInfoBasica col-sm-6 col-md-offset-2">
 										  <div class="input-group">
 										  <label class="control-label" for="focusedInput1">Ingresa Número de Ficha.</label>
 										  <input class="form-control" id="alFicha" name="alFicha" type="text">
-										    <span class="input-group-btn">
-										        <button class="btn btn-danger" type="submit" id="btnFicha">Buscar</button>
+										      <span class="input-group-btn">
+										       <button class="btn btn-primary" type="submit" id="btnFicha">Buscar</button>
 										    </span>
-										    <i class="fa fa-spinner fa-spin"></i>
 										  </div>
 									</form>
-										<!--Muestra mensaje: FICHA encontrado o No encontrado-->
-										<p class="col-sm-4" id="alertFicha"></p>
+									<!--Muestra mensaje: FICHA encontrado o No encontrado-->
+									<span class="col-sm-4" id="alertFicha"></span>
 									</div>
-							<!--FORMULARIO DE INFORMACION BASICA DEL ALUMNO  FICHA, Nombre, Carrera -->
-								<div id="infoBasica"  class="col-sm-12">
-									<h3 class="wizard-header text-success">-INFORMACIÓN BÁSICA-</h3>
+								<!--FORMULARIO DE INFORMACION BASICA DEL ALUMNO  FICHA, Nombre, Carrera -->
+								<div id="infoBasica" class="col-sm-12">
+									<center><h4 class="text-success"><b>-INFORMACIÓN BÁSICA-</b></h4></center>
 									<div class="col-sm-12">
-										<h5 class="col-sm-3"><b># Ficha:</b></h5>
-										<h4 id="al_ficha" class="col-sm-9"></h4>
-									</div>
-									<div class="col-sm-12">
-										<h5 class="col-sm-3"><b>Nombre Completo:</b></h5>
-										<h4 id="al_nombre"class="col-sm-9"></h4>
+										<h5 class="ib-text col-sm-4"><b># Ficha:</b></h5>
+										<h4 id="al_ficha" class="col-sm-8"></h4>
 									</div>
 									<div class="col-sm-12">
-										<h5 class="col-sm-3"><b>Carrera:</b></h5>
-										<h4 id="al_carrera" class="col-sm-9"></h4>
+										<h5 class="ib-text col-sm-4"><b>Nombre Completo:</b></h5>
+										<h4 id="al_nombre" class="col-sm-8"></h4>
 									</div>
 									<div class="col-sm-12">
-										<h5 class="col-sm-3"><b>Fecha de Solicitud:</b></h5>
-										<h4 id="al_fechasol" class="col-sm-9"></h4>
+										<h5 class="ib-text col-sm-4"><b>Carrera:</b></h5>
+										<h4 id="al_carrera" class="col-sm-8"></h4>
 									</div>
+									<h5 class="col-md-offset-5 col-md-7 text-danger" style="text-align: right;">
+									<strong>**Verifíca tus Datos antes de continuar**</strong></h5>
 								</div>
 								</div>
 							</div><!--FIN DE VISTA INFORMACION BASICA-->
@@ -191,11 +187,11 @@
 							</div>
                             <div class="tab-pane" id="turno">
                                 <div class="row">
-                                    <h2 class="miTurnoEs info-text"></h2>
-                                    <center><strong><h1 class="text-info" style="font-size: 8em;" id="turnoNum">#12345</h1></strong></center>
+                                    <h3 class="miTurnoEs info-text"></h3>
+                                    <center><strong><h1 class="text-primary" style="font-size: 8em;" id="turnoNum">#12345</h1></strong></center>
                                 </div>
 								<div class="row" style="text-align: center !important;"> 
-									<a class="btn btn-success btn-lg" onclick="reloadPageFinish();" style="width: 40%;">Finalizar</a>
+									<a class="btn btn-warning btn-lg" onclick="reloadPageFinish();" style="width: 40%;">Finalizar</a>
 								</div>
 
                             </div>

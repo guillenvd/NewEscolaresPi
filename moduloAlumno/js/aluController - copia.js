@@ -24,80 +24,81 @@ function getAlert (message, type = 'info', centerText = 0){
               +'</div>';
 };
 
-/*Ir lor la informacion Basica del Alumno*/
-
 getInfoBasicaAlumno = function(){
-	console.info('getInfoBasicaAlumno');
-	$('#alFicha').show();
+	console.log('getInfoBasicaAlumno');
+	 var valor = $(event.target).val();
+			$('#alFicha').delay(1700).fadeIn(2000);
+			$('form.formInfoBasica').submit(function(e){
+				e.preventDefault();
+				$('#btnFicha').prop('disabled', true);
+				var FOLIO  =  $.trim(document.getElementById('alFicha').value);
+				if (FOLIO > 0) {
+					$.ajax({
+						type: 'POST',
+						url: 'php/getInfoBasicAlumno.php',
+						data: {'folio': FOLIO},
+						success: function(respuesta){
+							if(respuesta.length > 1 ){
+								var jsonResponse  = jQuery.parseJSON(respuesta);
+								console.log(jsonResponse);
+								localStorage.setItem("alumnoData", JSON.stringify(jsonResponse.infobasica));
+								setInfoBasica(jsonResponse.infobasica);
+								$('#alertFicha').show().html(getAlert('Correcto, Ficha encontrada', 'success', 1));
+								$("#infoBasica").fadeIn("slow");
+								$('#sig').show().prop( "disabled", false );
+
+
+								/*Start with the Step 2 - Revision de Documentos*/
+								$('#sig').click(function(event){
+										$('#sig').hide();
+										$('#infBasic').bind('click', false);
+										$('#docsReq').unbind('click', false);
+
+										$('.iniciar_rev').click(function(event){
+											$('#avisoDocs').slideUp("slow");
+											$('.iniciar_rev').hide();
+											$('#sig').hide();
+											checkDocsRequeridos(jsonResponse.infobasica);
+										});										
+								});
+								//respuesta = '';
+							}
+							else{
+								console.log("#Ficha Failed");
+								$('#alertFicha').show().html(getAlert('# Ficha no encontrada', 'danger', 1));
+								$('#infoBasica').hide();
+								$('#sig').hide().prop( "disabled", false );
+							}
+						}
+					}) //ajax end
+				} //end if Ficha is empty
+				else{
+					$('#alertFicha').show().html(getAlert('Introducir Ficha.', 'danger', 1));
+					$('#searchFicha').addClass("has-error");
+					$('#sig').hide().prop( "disabled", false );
+				}
+			});
+
 };
 
-$('form.formInfoBasica').submit(function(e){
-	e.preventDefault();
-	var FOLIO  =  $.trim(document.getElementById('alFicha').value);
-	if (FOLIO > 0) {
-		$.ajax({
-			type: 'POST',
-			url: 'php/getInfoBasicAlumno.php',
-			data: {'folio': FOLIO},
-			success: function(respuesta){
-				if(respuesta.length > 1 ){
-					jsonResponse  = jQuery.parseJSON(respuesta);
-					setInfoBasica(jsonResponse.infobasica);
-					$('#alertFicha').show().html(getAlert('Ficha Encontrada', 'info', 1));
-					$("#infoBasica").fadeIn("slow");
-					$('#alertFicha').delay(2500).fadeOut("slow");
-					$('#sig').show().prop( "disabled", false );
-				}
-				else{
-					console.log("#Ficha Failed");
-					$('#alertFicha').show().html(getAlert('# Ficha No Encontrada', 'danger', 1));
-					$('#infoBasica').slideUp("slow");
-					$('#sig').hide().prop( "disabled", true);
-					$('#alertFicha').delay(2500).fadeOut("slow");
-				}
-			}
-		}) //ajax end
-	} //end if Ficha is empty
-	else{
-		$('#alertFicha').show().html(getAlert('Debe Introducir Ficha Valida.', 'danger', 1));
-		$('#infoBasica').slideUp("slow");
-		$('#searchFicha').addClass("has-error");
-		$('#sig').hide().prop( "disabled", false );
-		$('#alertFicha').delay(2500).fadeOut("slow");
-
-	}
-});
-
-$('#sig').click(function(event){
-	console.log(jsonResponse)
-		$('#infBasic').bind('click', false);
-		$('#docsReq').unbind('click', true).click();
-		$('#sig').hide().prop( "disabled", true);
-
-});
-
-$('.iniciar_rev').click(function(event){
-	$('#avisoDocs').slideUp("slow");
-	$('.iniciar_rev').hide();
-	$('#sig').hide();
-	checkDocsRequeridos();
-});	
-
-/*Fin getInfoBasica*/
-
-checkDocsRequeridos = function(){
+checkDocsRequeridos = function(infobasica){
 	console.log('checkDocsRequeridos');
-	$('#checkDocs').delay(700).slideDown("slow");
+	$('#checkDocs').delay(1000).slideDown("slow");
 	$('#btnDocumentos').removeClass('iniciar_rev').addClass('terminar_rev').empty().html('Confirmar Documentos').attr("disabled", true).show();
+	var countChecks = 0;
+	var asEstado = 1;
 	$(':checkbox').click(function(){
+   			countChecks ++;
 		if ($('#cb18').prop('checked') && $('#cb19').prop('checked') && $('#cb20').prop('checked') && $('#cb21').prop('checked')){
+			console.log(infobasica.asNombre+'-Documentos Completados.');
 			$('#btnDocumentos').attr( "disabled", false);
 		}else{
 			$('#btnDocumentos').attr("disabled", true);
 		}
 	});
 	$('#btnDocumentos').click(function(event){
-		confirmDocsRequeridos(jsonResponse.infobasica);
+		asEstado = 2;
+		confirmDocsRequeridos(infobasica,asEstado);
 	});
 }
 
@@ -109,7 +110,7 @@ function checkList() {
 	 return returnBoolean;
 }
 
-confirmDocsRequeridos = function(infobasica){
+confirmDocsRequeridos = function(infobasica, asEstado){
 	console.log('confirmDocsRequeridos');
 
 	if(checkList()){
@@ -129,9 +130,11 @@ confirmDocsRequeridos = function(infobasica){
 	           success: function(respuesta){
 	           		var jsonResponse  = jQuery.parseJSON(respuesta);
 					$('.waitChange').hide();
+
 					$('#miTurno').unbind('click', false).click();
-					$('.miTurnoEs').html(alumno.asNombre+'<br>Tu tiempo de espera es: <ins style="color: #00bcd4; font-size: 1.5em;">'+jsonResponse.tiempo+ '</INS>  minutos. <br>Número de turno:');
+					$('.miTurnoEs').html(alumno.asNombre+' TU TIEMPO DE ESPERA ES <ins style="color: #00bcd4;font-size: 1.3em;">'+jsonResponse.tiempo+ '</INS>  MINUTOS Y TU TURNO ES EL :');
 					$('#turnoNum').html('#'+jsonResponse.turno);
+
 					$('#finalizar').hide();
 					$('#docsReq').bind('click', false);
 	           }
@@ -145,8 +148,8 @@ function reloadPageFinish(){
 }
 function outIndicaciones(){
 	console.log('outIndicaciones');
-	$("#indicaciones").fadeOut(600);
-	$("#fichaTrue").delay(600).fadeIn('slow');
+	$("#indicaciones").fadeOut(1500);
+	$("#fichaTrue").delay(1200).show(1500);
 }
 
 getListaDoc = function () {
@@ -207,3 +210,4 @@ clearElements = function(){
 	$('#al_carrera').html('');
 	$('#al_fechasol').html('');
 }
+
