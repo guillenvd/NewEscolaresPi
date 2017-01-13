@@ -1,3 +1,10 @@
+/*
+@Author:
+	Proyecto: EscolaresPi
+	David Guillen
+	Ivan Gastelum
+*/
+
 $(document).ready(function() {
 
 hideElements();
@@ -16,7 +23,7 @@ function getAlert (message, type = 'info', centerText = 0){
 };
 
 getInfoBasicaAlumno = function(){
-	console.log('getInfoBasicaAlumno');
+	console.info('getInfoBasicaAlumno');
 	$('#alFicha').show();
 };
 
@@ -41,7 +48,7 @@ $('form.formInfoBasica').submit(function(e){
 								console.log("#Ficha Failed");
 								$('#alertFicha').show().html(getAlert('# Ficha No Encontrada', 'danger', 1));
 								$('#infoBasica').slideUp("slow");
-								$('#sig').hide().prop( "disabled", false );
+								$('#sig').hide().prop( "disabled", true);
 								$('#alertFicha').delay(2500).fadeOut("slow");
 							}
 						}
@@ -59,41 +66,45 @@ $('form.formInfoBasica').submit(function(e){
 
 $('#sig').click(function(event){
 	console.log(jsonResponse)
-		$('#sig').hide();
 		$('#infBasic').bind('click', false);
-		$('#docsReq').unbind('click', false);					
+		$('#docsReq').unbind('click', true).click();
+		$('#sig').hide().prop( "disabled", true);
+
 });
 
 $('.iniciar_rev').click(function(event){
 	$('#avisoDocs').slideUp("slow");
 	$('.iniciar_rev').hide();
 	$('#sig').hide();
-	checkDocsRequeridos(jsonResponse.infobasica);
+	checkDocsRequeridos();
 });	
 
-checkDocsRequeridos = function(infobasica){
-	console.log('checkDocsRequeridos');
+checkDocsRequeridos = function(){
+	ALLCHECK = false;
+	console.info('checkDocsRequeridos');
 	$('#checkDocs').delay(1000).slideDown("slow");
-	$('#btnDocumentos').removeClass('iniciar_rev').addClass('terminar_rev').empty().html('Confirmar Documentos').attr("disabled", true).show();
-	var countChecks = 0;
-	var asEstado = 1;
+	$('.iniciar_rev').hide();
+	$('#btnDocumentos').attr("disabled", true).bind('click', false).show();
 	$(':checkbox').click(function(){
-   			countChecks ++;
-		if ($('#cb18').prop('checked') && $('#cb19').prop('checked') && $('#cb20').prop('checked') && $('#cb21').prop('checked')){
-			console.log(infobasica.asNombre+'-Documentos Completados.');
-			$('#btnDocumentos').attr( "disabled", false);
+	ALLCHECK = $('#cb18').prop('checked') && $('#cb19').prop('checked') && $('#cb20').prop('checked') && $('#cb21').prop('checked');
+		if (ALLCHECK){
+			$('#btnDocumentos').attr("disabled", false).unbind('click', false);
 		}else{
-			$('#btnDocumentos').attr("disabled", true);
+			$('#btnDocumentos').attr("disabled", true).bind('click', false);
 		}
-	});
-	$('#btnDocumentos').click(function(event){
-		asEstado = 2;
-		confirmDocsRequeridos(infobasica,asEstado);
 	});
 }
 
-confirmDocsRequeridos = function(infobasica, asEstado){
-	console.log('confirmDocsRequeridos');
+$('#btnDocumentos').click(function(event){
+	if (ALLCHECK){
+		console.info(jsonResponse.infobasica.asFicha+': Documentos Completados.');
+		confirmDocsRequeridos(jsonResponse.infobasica);
+	}
+});
+
+confirmDocsRequeridos = function(infobasica){
+	console.info('confirmDocsRequeridos');
+	asEstado = 2
 	var currentFicha = {
 			"ficha"  : infobasica.asFicha,
 			"carrera": infobasica.asCarrera,
@@ -111,67 +122,69 @@ confirmDocsRequeridos = function(infobasica, asEstado){
 				$('#showStatus').modal('show');
            },
            success: function(respuesta){
-           		var jsonResponse  = jQuery.parseJSON(respuesta);
-				console.log(jsonResponse);
+           		aspirantes  = jQuery.parseJSON(respuesta);
+				console.log(aspirantes);
 				$('.waitChange').hide();
 				$('#showStatus').delay(10000).modal('hide');
-				$('.nombreTurno').html(jsonResponse.Estado.asNombre +' tu turno es:');
-           }
-       });
-	generarTurno(currentFicha);
-}
-
-generarTurno = function(currentFicha){
-console.log('generarTurno');
-$.ajax({
-           type:'POST',
-           url: 'php/generarTurno.php',
-           data: currentFicha,
-           beforeSend: function(){
-
-           },
-           success: function(respuesta){
-           		var jsonResponse  = jQuery.parseJSON(respuesta);
-				console.log(jsonResponse);
+				$('.nombreTurno').html(aspirantes.asNombre +' tu turno es:');
 				$('#miTurno').unbind('click', false).click();
-				$('#tuTurno').empty().html(jsonResponse.turno);
+				$('#tuTurno').empty().html(aspirantes.asTurno);
 				$('#finalizar').hide();
 				$('#docsReq').bind('click', false);
+				enviarInfoAlumnos(aspirantes);
            }
        });
+}
+
+enviarInfoAlumnos = function (aspirantes) {
+	console.info('enviarInfoAlumnos');
+	$.ajax({
+		type: 'GET',
+		url: 'php/generarTurno.php',
+		data: aspirantes,
+		success: function(respuesta){
+			if(respuesta.length > 1 ){
+				jsonResponse  = jQuery.parseJSON(respuesta);
+				console.log(jsonResponse);
+			}
+			else{
+				console.info("Oops! Error...");
+			}
+		}
+	}) //ajax end
+	return jsonResponse;
 }
 
 function outIndicaciones(){
-	console.log('outIndicaciones');
+	console.info('outIndicaciones');
 	$("#indicaciones").fadeOut(600);
 	$("#fichaTrue").delay(600).fadeIn('slow');
 }
 
 getListaDoc = function () {
-	console.log('getListaDoc');
+	console.info('getListaDoc');
 	var jsonResponse;
-					$.ajax({
-						type: 'GET',
-						url: 'php/getDocRequeridos.php',
-						success: function(respuesta){
-							if(respuesta.length > 1 ){
-								jsonResponse  = jQuery.parseJSON(respuesta);
-								$('#documentos #doc0').html(jsonResponse.Documento[0].Documento);
-			                    $('#documentos #doc1').html(jsonResponse.Documento[1].Documento);
-			                    $('#documentos #doc2').html(jsonResponse.Documento[2].Documento);
-			                    $('#documentos #doc3').html(jsonResponse.Documento[3].Documento);			
-							}
-							else{
-								console.log("Error");
-							}
-						}
-					}) //ajax end
-					return jsonResponse;
+	$.ajax({
+		type: 'GET',
+		url: 'php/getDocRequeridos.php',
+		success: function(respuesta){
+			if(respuesta.length > 1 ){
+				jsonResponse  = jQuery.parseJSON(respuesta);
+				$('#documentos #doc0').html(jsonResponse.Documento[0].Documento);
+                $('#documentos #doc1').html(jsonResponse.Documento[1].Documento);
+                $('#documentos #doc2').html(jsonResponse.Documento[2].Documento);
+                $('#documentos #doc3').html(jsonResponse.Documento[3].Documento);			
+			}
+			else{
+				console.info("Error");
+			}
+		}
+	}) //ajax end
+	return jsonResponse;
 }
 
 setInfoBasica = function(infobasica){
-	console.log('setInfoBasica');
-	// as = aspirante
+	console.info('setInfoBasica');
 	$('#al_ficha').html(infobasica.asFicha);
 	$('#al_nombre').html(infobasica.asNombre);
 	$('#al_carrera').html(infobasica.asCarrera);
@@ -179,7 +192,7 @@ setInfoBasica = function(infobasica){
 };
 
 hideElements =  function(){
-	console.log('hideElements');
+	console.info('hideElements');
 	/* Hide elements */
 	$('#fichaTrue').hide();
 	$('#alFicha').hide();
@@ -190,19 +203,17 @@ hideElements =  function(){
 	$('#sig').attr("disabled", true);
 	$('#atras').hide().attr("disabled", true);
 	$('#finalizar').hide();
-
 	$('#docsReq').bind('click', false);
 	$('#miTurno').bind('click', false);
 	$('#infBasic').bind('click', false);
-
+	$('#btnDocumentos').hide();
 };
 
 clearElements = function(){
-	console.log('clearElements');
+	console.info('clearElements');
 	$('#alFicha').val('');
 	$('#al_ficha').html('');
 	$('#al_nombre').html('');
 	$('#al_carrera').html('');
 	$('#al_fechasol').html('');
 }
-

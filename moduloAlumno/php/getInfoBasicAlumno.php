@@ -8,10 +8,10 @@ $alumno = array();
 	if ($result->num_rows > 0) {
 	    while($row = $result->fetch_assoc()) {
 	    	$alumno =  array(
-	    		'asId' =>$row['ID_ASPIRANTE'],
-	    		'asFicha' => $row['NUMERO_FICHA'],
-	    		'asNombre' =>$row['NOMBRE_COMPLETO'],
-	    		'asCarrera' =>$row['CARRERA']);
+	    		'asId'      => $row['ID_ASPIRANTE'],
+	    		'asFicha'   => $row['NUMERO_FICHA'],
+	    		'asNombre'  => $row['NOMBRE_COMPLETO'],
+	    		'asCarrera' => $row['CARRERA']);
 	    }
 		$arrayName = array('infobasica' => $alumno);
 		echo json_encode($arrayName);
