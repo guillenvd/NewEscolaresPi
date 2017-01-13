@@ -19,7 +19,8 @@ var EsperaController = (function() {
             var jsonResponse  = jQuery.parseJSON(data);
             console.log(jsonResponse);
             console.log(jsonResponse);
-            var table = $('#listaEspera').DataTable({
+            //$("#listaEspera").DataTable().fnDestroy();
+            var table = $('#listaEspera').DataTable({"bDestroy": true,
                                     data: jsonResponse,
                                     columns: 
                                         [
@@ -56,9 +57,8 @@ var EsperaController = (function() {
                                 });
             table.column(0).visible(false); //hiden columm idAlumno
             $('#listaEspera tbody').on( 'click', 'li', function () {
-                console.log($(this).attr('action'));
                 var data = table.row( $(this).parents('tr') ).data();
-                console.log( data );
+                _Espera.changeAlumnoStatus(data, $(this).attr('action'), table);
             } );
         });
 
@@ -67,8 +67,18 @@ var EsperaController = (function() {
     /* add the methods to the prototype so that all of the 
      Controller instances can access the private static
     */
-    EsperaController.prototype.more =  function(){
-       return false;
+    EsperaController.prototype.changeAlumnoStatus =  function( alumno, newEstado, table ){
+        var data = {
+                     'Estado': newEstado, 
+                     'Ficha': alumno[2],
+                     'Id': alumno[0]
+                    };
+        console.log(data)
+        _App.phpOperation('updateStatus', data, function(resultPhp){ 
+            console.log(resultPhp)
+            table
+            _Espera.constructor()
+        });
     };
 
     return EsperaController;

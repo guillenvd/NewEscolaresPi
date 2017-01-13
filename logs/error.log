@@ -1390,3 +1390,4 @@
 [Tue Jan 10 16:53:48.767168 2017] [:error] [pid 3104] [client 127.0.0.1:51692] PHP Notice:  Undefined index: ficha in /var/www/html/newescolares/dist/php/searchAlumno.php on line 15
 [Tue Jan 10 16:54:01.476364 2017] [:error] [pid 3103] [client 127.0.0.1:51694] PHP Notice:  Undefined index: ficha in /var/www/html/newescolares/dist/php/searchAlumno.php on line 15
 [Tue Jan 10 16:54:17.500039 2017] [:error] [pid 3100] [client 127.0.0.1:51696] PHP Notice:  Trying to get property of non-object in /var/www/html/newescolares/dist/php/searchAlumno.php on line 13
+[Wed Jan 11 10:02:25.352357 2017] [:error] [pid 2986] [client 127.0.0.1:56398] script '/var/www/html/newescolares/dist/php/updateAlumno.php' not found or unable to stat, referer: http://escolarespi.dev/pages/index.html

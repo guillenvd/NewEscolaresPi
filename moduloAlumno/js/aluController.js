@@ -134,7 +134,7 @@ confirmDocsRequeridos = function(infobasica, asEstado){
 					$('.waitChange').hide();
 
 					$('#miTurno').unbind('click', false).click();
-					$('.miTurnoEs').html(alumno.asNombre+' TU TIEMPO DE ESPERA ES <INS>'+jsonResponse.tiempo+ '</INS>  MINUTOS Y TU TURNO ES:'+jsonResponse.turno);
+					$('.miTurnoEs').html(alumno.asNombre+' TU TIEMPO DE ESPERA ES <ins style="color: #00bcd4;font-size: 1.3em;">'+jsonResponse.tiempo+ '</INS>  MINUTOS Y TU TURNO ES EL :');
 					$('#turnoNum').html('#'+jsonResponse.turno);
 
 					$('#finalizar').hide();
