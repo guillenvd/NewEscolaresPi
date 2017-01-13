@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  	<title>Reinscripciones ITE :: Modulo Alumnos</title>
+	<link rel="stylesheet" type="text/css" href="../dist/animated/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="../dist/animated/css/component.css" />
+	<link rel="stylesheet" href="css/font.css">
+  	<link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
+  	<link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="../dist/animated/js/modernizr.custom.js"></script>
+    <link rel="icon" type="image/ico" href="../faviconpi.ico">
+</head>
+
+<body>
+  <body>
+    <div class="image-container set-full-height" style="background-color: grey">
+	    <!--   Creative Tim Branding   https://material.io/icons/  http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html
+
+	    http://ianlunn.github.io/Hover/
+	    -->
+	    <a href="#">
+	         <div class="logo-container">
+	            <div class="logo">
+	                <img src="../img/ITElogo.jpg">
+	            </div>
+	            <div class="brand" style="margin-top: 6% !important;">
+	              <!--Instituto Tecnológico de Ensenada--> 
+	            </div>
+	        </div>
+	    </a>	
+	    <!--   Big container   -->
+	    <div class="container">
+	        <div class="row">
+		        <div class="col-sm-10 col-sm-offset-1">
+		            <!-- Wizard container -->
+		            <div class="wizard-container">
+		                <div class="card wizard-card" data-color="green" id="wizard">
+		                <!--        You can switch " data-color="blue" "  with one of the next bright colors: "green", "orange", "red", "purple"             -->
+		                    	<div class="wizard-header">
+		                        	<h2 class="wizard-title">
+		                        	TECNOLÓGICO NACIONAL DE MÉXICO
+		                        	</h2>
+		                        		<h4 style="font-size: 2em;">- Instituto Tecnológico de Ensenada -</h4>
+		                    	</div>
+								<div class="wizard-navigation">
+									<ul>
+			                            <li class="wli"><a id="infBasic" href="#infoAlBasic" data-toggle="tab">Datos del Alumno</a></li>
+			                            <li class="wli"><a id="docsReq" href="#documentos" data-toggle="tab">Documentos Requeridos</a></li>
+			                            <li class="wli"><a id="miTurno" href="#turno" data-toggle="tab">Tu Turno es:</a></li>
+			                        </ul>
+								</div>
+                        <div class="tab-content">
+                            <div class="tab-pane" id="infoAlBasic">
+								<div class="row"  id="indicaciones">
+									<div class="col-sm-12 col-sm-offset-1">
+										<h4 class="text-warning">Indicaciones:</h4>
+										<p class="text-muted">1.- Utiliza tu <strong class="text-primary">Número de ficha </strong>para buscar tu Información Básica en el sistema. (Nombre Completo, Carrera, Fecha).
+										<br>2.- El número de Ficha lo puedes localizar en el <strong class="text-primary">Comprobante de Pago </strong>que el banco te proporcionó al realizar el pago correspondiente.
+										<br>3.- Una vez hayas localizado tu número de ficha podrás dar inicio a tu <strong class="text-primary">Inscripción.</strong>.
+										</p>
+									</div>
+									<div class="rFicha hvr-float-shadow col-sm-4 col-md-offset-4" data-toggle="modal" data-target="#myModal">
+										<h5><b>Iniciar Proceso de Reinscripción</b></h5>
+									</div>
+
+								</div>
+								<!-- Modal -->
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								        <h4 class="modal-title text-warning" id="myModalLabel"><center><b>¡AVISO IMPORTANTE!</b></center></h4>
+								      </div>
+								      <div class="modal-body">
+								       <p style="font-size: 1.1em; text-align: justify;">Es importante llenar la información correctamente, ya que esto puede repercutir en tu proceso de <strong class="text-danger">Reinscripción</strong>.  Recuerda que todo tu registro será analizado por el personal del Depto. Escolares, si hay alguna incongruencia, tu proceso sera <strong class='text-danger'>Cancelado</strong>.<br><br>
+								       En caso de tener problemas tu ficha y no muestra tu información, intenta nuevamente; si el error continua contacta a Soporte Técnico.<br> 
+								       </p>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="entendido btn btn-warning" data-dismiss="modal">Entendido</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+
+								<div id="fichaTrue">
+									<div id="searchFicha" class="col-sm-12 form-group label-floating">
+									<form class="formInfoBasica col-sm-6">
+										  <div class="input-group">
+										  <label class="control-label" for="focusedInput1">Ingresa Número de Ficha.</label>
+										  <input class="form-control" id="alFicha" name="alFicha" type="text">
+										    <span class="input-group-btn">
+										        <button class="btn btn-danger" type="submit" id="btnFicha">Buscar</button>
+										    </span>
+										    <i class="fa fa-spinner fa-spin"></i>
+										  </div>
+									</form>
+										<!--Muestra mensaje: FICHA encontrado o No encontrado-->
+										<p class="col-sm-4" id="alertFicha"></p>
+									</div>
+							<!--FORMULARIO DE INFORMACION BASICA DEL ALUMNO  FICHA, Nombre, Carrera -->
+								<div id="infoBasica"  class="col-sm-12">
+									<h3 class="wizard-header text-success">-INFORMACIÓN BÁSICA-</h3>
+									<div class="col-sm-12">
+										<h5 class="col-sm-3"><b># Ficha:</b></h5>
+										<h4 id="al_ficha" class="col-sm-9"></h4>
+									</div>
+									<div class="col-sm-12">
+										<h5 class="col-sm-3"><b>Nombre Completo:</b></h5>
+										<h4 id="al_nombre"class="col-sm-9"></h4>
+									</div>
+									<div class="col-sm-12">
+										<h5 class="col-sm-3"><b>Carrera:</b></h5>
+										<h4 id="al_carrera" class="col-sm-9"></h4>
+									</div>
+									<div class="col-sm-12">
+										<h5 class="col-sm-3"><b>Fecha de Solicitud:</b></h5>
+										<h4 id="al_fechasol" class="col-sm-9"></h4>
+									</div>
+								</div>
+								</div>
+							</div><!--FIN DE VISTA INFORMACION BASICA-->
+
+<!--INICIO DE REVISION DE DOCUMENTOS-->
+					<div class="tab-pane" id="documentos">   
+						<div id="avisoDocs" class="col-sm-10  col-sm-offset-1 alert alert-dismissible alert-info">
+							<h4 class="info-text"><strong>Revisión de Documentos Requeridos</strong></h4>
+							  <p>A continuación se mostrarán una lista de 4 documentos que son obligatorios traer para continuar con tu reinscripción.<br>
+							  1. Comprobante de Ficha de Pago. <br>2. Solicitud de Inscripcion.<br>3. Contrato ITE.<br>4. Número de Seguro Social.
+						</div>
+                        <div class="row" id="checkDocs">
+                            <div class="col-sm-10 col-sm-offset-1">
+                            	<h4 class="text-warning">Instrucciones:</h4>
+								<p class="text-muted">Da click sobre el nombre del documento para marcarlo como completado.</p>
+								<form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+									<ol>
+										<li>
+											<input id="cb18" name="cb18" type="checkbox" value="1">
+											<label for="cb18"><span id="doc0"></span></label>
+										</li>
+										<li>
+											<input id="cb19" name="cb19" type="checkbox" value="1">
+											<label for="cb19"><span id="doc1"></span></label>
+										</li>
+										<li>
+											<input id="cb20" name="cb20" type="checkbox" value="1">
+											<label for="cb20"><span id="doc2"></span></label>
+										</li>
+										<li>
+											<input id="cb21" name="cb21" type="checkbox" value="1">
+											<label for="cb21"><span id="doc3"></span></label>
+										</li>
+									</ol>
+								</form>
+							
+                            </div>
+                        </div>
+                        <div class="col-sm-9 col-sm-offset-3" id="btnDocs">
+                        	  <a id="btnDocumentos" class="iniciar_rev col-sm-4 btn btn-raised btn-primary">Iniciar Revisión</a>
+							  <a href="http://escolarespi.dev/moduloAlumno/" class="cancelar_rev col-sm-4 btn btn-raised btn-danger">Cancelar Revisión</a>
+						</div>
+                    </div><!--FIN DE REVISION DE DOCUMENTOS-->
+
+							<!-- Modal -->
+
+							<div class="modal fade" id="showStatus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							          <span aria-hidden="true">&times;</span>
+							        </button>
+							        <h4 class="modal-title text-success" id="myModalLabel"></h4>
+							      </div>
+							      <div class="modal-body">
+							       <p style="font-size: 3em; text-align: center;"> 
+											<i class="waitChange fa fa-spinner fa-spin" style="display: inline-block;"></i>
+							     			<strong class="newStatus text-danger">estado</strong>
+							       </p>
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-warning" data-dismiss="modal">ok</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+                            <div class="tab-pane" id="turno">
+                                <div class="row">
+                                    <h2 class="miTurnoEs info-text"></h2>
+                                    <center><strong><h1 class="text-info" style="font-size: 8em;" id="turnoNum">#12345</h1></strong></center>
+                                </div>
+								<div class="row" style="text-align: center !important;"> 
+									<a class="btn btn-success btn-lg" onclick="reloadPageFinish();" style="width: 40%;">Finalizar</a>
+								</div>
+
+                            </div>
+                        </div> <!-- Fin content -->
+	                    	<div class="wizard-footer">
+	                        	<div class="pull-right">
+	                                <input id='sig' type='button' class='btn btn-next btn-fill btn-info btn-wd' name='next' value='Siguiente' />
+	                            </div>
+	                            <div class="pull-left">
+	                                <input id="atras" type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Atrás' />
+
+	                            </div>
+	                            <div class="clearfix"></div>
+	                    	</div>
+		                </div>
+		            </div> <!-- wizard container -->
+		        </div>
+	    	</div> <!-- row -->
+		</div> <!--  big container input[type=radio]-->
+	</div>
+</body>
+ 	<script src="../vendor/jquery/jquery.min.js"></script>
+ 	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script>
+	<script src="js/aluController.js"></script>
+	<script src="../dist/animated/js/modernizr.custom.js"></script>
+	<script src="../dist/animated/js/svgcheckbx.js"></script>
+</body>
+</html>

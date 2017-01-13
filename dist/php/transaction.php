@@ -11,7 +11,6 @@ try {
 	$conn->query("LOCK TABLES carreras");
 	    $conn->query("INSERT INTO users (name) VALUES ('marcus')");
 	    $conn->query("UPDATE users SET name = 'jane' WHERE 'id' = 39 ");
-	    $sqlUnlock = "unlock tables";
 	$conn->query("UNLOCK TABLES");
     $conn->commit();
 
