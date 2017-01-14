@@ -3,6 +3,7 @@ var Countdown = {
   // Backbone-like structure
   $el: $('.countdown'),
   // Params
+  searchTurnoInterval: null,
   countdown_interval: null,
   total_seconds     : 0,
   // Initialize the countdown  
@@ -131,8 +132,11 @@ var Countdown = {
       if(parseInt(jsonResponse.estado) != 1){
         if($('#nextturno').text() != "-")
           that.nextInning();
-        else{
-           Countdown.clearClockUi();
+        else{    
+            Countdown.values.seconds = 0;
+            Countdown.values.minutes = 0;
+            clearInterval(Countdown.countdown_interval);
+            Countdown.clearClockUi();
         }
       }       
     });
@@ -152,6 +156,7 @@ var Countdown = {
 
   },
   getInning: function(){
+    clearInterval(Countdown.searchTurnoInterval);
     window.localStorage.removeItem('ficha');
     $.get('/dist/php/turnos.php?Get=1', function(result){
       var jsonResponse  = jQuery.parseJSON(result);
@@ -163,24 +168,33 @@ var Countdown = {
            $('#nextturno').empty().text(jsonResponse.Alumno.nextTurno );
            Countdown.init();
        }else{
-            Countdown.clearClockUi();
+          
+          if( Countdown.values ){
+            Countdown.values.seconds = 0;
+            Countdown.values.minutes = 0;
+          }
+          clearInterval(Countdown.countdown_interval);
+          Countdown.clearClockUi();
        }
     });
   },
   clearClockUi: function(){
-      window.localStorage.removeItem('ficha');
-      $('#minutos').attr('data-init-value',0);
-      $('#segundos').attr('data-init-value',0);
-      $('#turno').empty().text('-');
-      $('#nextturno').empty().text('-');
-      $('div.figure.min.min-1').find('span').empty().text('0');
-      $('div.figure.min.min-2').find('span').empty().text('0');
-      $('div.figure.sec.sec-1').find('span').empty().text('0');
-      $('div.figure.sec.sec-2').find('span').empty().text('0');
-      Countdown.values.seconds = 0;
-      Countdown.values.minutes = 0;
-      clearInterval(Countdown.countdown_interval);
-      //Countdown.init();
+      setTimeout(function(){
+        window.localStorage.removeItem('ficha');
+        $('#minutos').attr('data-init-value',0);
+        $('#segundos').attr('data-init-value',0);
+        $('#turno').empty().html('-');
+        $('#nextturno').empty().html('-');
+        $('div.figure.min.min-1').find('span.top, span.bottom').html('0');
+        $('div.figure.min.min-2').find('span.top, span.bottom').html('0');
+        $('div.figure.sec.sec-1').find('span.top, span.bottom').html('0');
+        $('div.figure.sec.sec-2').find('span.top, span.bottom').html('0');
+        Countdown.init();
+        Countdown.searchTurnoInterval = 
+          setInterval(function() {
+              Countdown.getInning();
+          }, 10000);
+      },1000);
   }
 };
 
