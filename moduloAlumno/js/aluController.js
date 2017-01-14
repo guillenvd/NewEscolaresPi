@@ -47,13 +47,13 @@ $('form.formInfoBasica').submit(function(e){
 					$('#alertFicha').show().html(getAlert('Ficha Encontrada', 'info', 1));
 					$("#infoBasica").fadeIn("slow");
 					$('#alertFicha').delay(2500).fadeOut("slow");
-					$('#sig').show().prop( "disabled", false );
+					$('.pull-right').show().prop( "disabled", false );
 				}
 				else{
 					console.log("#Ficha Failed");
 					$('#alertFicha').show().html(getAlert('# Ficha No Encontrada', 'danger', 1));
 					$('#infoBasica').slideUp("slow");
-					$('#sig').hide().prop( "disabled", true);
+					$('.pull-right').hide().prop( "disabled", true);
 					$('#alertFicha').delay(2500).fadeOut("slow");
 				}
 			}
@@ -63,44 +63,45 @@ $('form.formInfoBasica').submit(function(e){
 		$('#alertFicha').show().html(getAlert('Debe Introducir Ficha Valida.', 'danger', 1));
 		$('#infoBasica').slideUp("slow");
 		$('#searchFicha').addClass("has-error");
-		$('#sig').hide().prop( "disabled", false );
+		$('.pull-right').hide().prop( "disabled", false );
 		$('#alertFicha').delay(2500).fadeOut("slow");
 
 	}
 });
 
 $('#sig').click(function(event){
-	console.log(jsonResponse)
+		$('.pull-right').slideUp()
 		$('#infBasic').bind('click', false);
 		$('#docsReq').unbind('click', true).click();
-		$('#sig').hide().prop( "disabled", true);
+		
 
 });
 
 $('.iniciar_rev').click(function(event){
 	$('#avisoDocs').slideUp("slow");
 	$('.iniciar_rev').hide();
-	$('#sig').hide();
+	$('.pull-right').hide();
 	checkDocsRequeridos();
 });	
 
 /*Fin getInfoBasica*/
 
 checkDocsRequeridos = function(){
-	console.log('checkDocsRequeridos');
 	$('#checkDocs').delay(700).slideDown("slow");
-	$('#btnDocumentos').removeClass('iniciar_rev').addClass('terminar_rev').empty().html('Confirmar Documentos').attr("disabled", true).show();
+	$('#btnDocumentos').removeClass('iniciar_rev').addClass('terminar_rev').empty().html('Confirmar Documentos');
+	$('#btnDocumentos').bind('click', false).attr("disabled", true).show();
 	$(':checkbox').click(function(){
 		if ($('#cb18').prop('checked') && $('#cb19').prop('checked') && $('#cb20').prop('checked') && $('#cb21').prop('checked')){
-			$('#btnDocumentos').attr( "disabled", false);
+			$('#btnDocumentos').attr( "disabled", false).unbind('click', true);
 		}else{
-			$('#btnDocumentos').attr("disabled", true);
+			$('#btnDocumentos').bind('click', false).attr("disabled", true);
 		}
 	});
-	$('#btnDocumentos').click(function(event){
-		confirmDocsRequeridos(jsonResponse.infobasica);
-	});
 }
+
+$('#btnDocumentos').click(function(event){
+	confirmDocsRequeridos(jsonResponse.infobasica);
+});
 
 function checkList() {
 	var returnBoolean = true;
@@ -111,8 +112,7 @@ function checkList() {
 }
 
 confirmDocsRequeridos = function(infobasica){
-	console.log('confirmDocsRequeridos');
-
+	console.info('confirmDocsRequeridos');
 	if(checkList()){
 		var alumno = jQuery.parseJSON( window.localStorage.getItem('alumnoData') );
 		var currentFicha = {
@@ -135,6 +135,7 @@ confirmDocsRequeridos = function(infobasica){
 					$('#turnoNum').html('#'+jsonResponse.turno);
 					$('#finalizar').hide();
 					$('#docsReq').bind('click', false);
+					console.info("turnoCompleted");
 	           }
 	       });
 	}
@@ -145,13 +146,11 @@ function reloadPageFinish(){
 	window.location.reload();
 }
 function outIndicaciones(){
-	console.log('outIndicaciones');
 	$("#indicaciones").fadeOut(600);
 	$("#fichaTrue").delay(600).fadeIn('slow');
 }
 
 getListaDoc = function () {
-	console.log('getListaDoc');
 	var jsonResponse;
 					$.ajax({
 						type: 'GET',
@@ -173,7 +172,6 @@ getListaDoc = function () {
 }
 
 setInfoBasica = function(infobasica){
-	console.log('setInfoBasica');
 	// as = aspirante
 	$('#al_ficha').html(infobasica.asFicha);
 	$('#al_nombre').html(infobasica.asNombre);
@@ -182,18 +180,15 @@ setInfoBasica = function(infobasica){
 };
 
 hideElements =  function(){
-	console.log('hideElements');
 	/* Hide elements */
 	$('#fichaTrue').hide();
 	$('#alFicha').hide();
 	$('#alertFicha').hide();
 	$('#infoBasica').hide();
 	$('#checkDocs').hide();
-	$('#sig').hide();
-	$('#sig').attr("disabled", true);
+	$('.pull-right').hide();
 	$('#atras').hide().attr("disabled", true);
 	$('#finalizar').hide();
-
 	$('#docsReq').bind('click', false);
 	$('#miTurno').bind('click', false);
 	$('#infBasic').bind('click', false);
@@ -201,7 +196,6 @@ hideElements =  function(){
 };
 
 clearElements = function(){
-	console.log('clearElements');
 	$('#alFicha').val('');
 	$('#al_ficha').html('');
 	$('#al_nombre').html('');

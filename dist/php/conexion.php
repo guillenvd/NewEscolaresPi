@@ -13,10 +13,12 @@ function getEstado($value) {
 	}
 }
 
-	/*$host = '31.220.104.130';
+	/*
+	$host = '31.220.104.130';
 	$user = 'u657840993_pi';
 	$pw	  = 'escolarespi';
-	$db   = 'u657840993_newpi';*/
+	$db   = 'u657840993_newpi';
+	*/
 
 	$host = 'localhost';
 	$user = 'root';
@@ -32,12 +34,11 @@ function getEstado($value) {
 		 * Use this instead of $connect_error if you need to ensure
 		 * compatibility with PHP versions prior to 5.2.9 and 5.3.0.
 
-		if (mysqli_connect_error()) {
-		    die('Connect Error (' . mysqli_connect_errno() . ') '
-		            . mysqli_connect_error());
-		}
-		else{	
-			echo 'Success... ' . $mysqli->host_info . "\n";
+			if (mysqli_connect_errno()){
+				echo "Failed" . mysqli_connect_error();
+			}else{
+				echo "Success";
+			}
 
 			} */
 ?> 
