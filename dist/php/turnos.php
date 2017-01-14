@@ -22,11 +22,12 @@
 			    	   		$datos =  array('turno' => $row['turno'], 'tiempo' => $row['tiempo'] );
 			    	   	}
 			    	   	else{
-			    	   		$datos =  array('turno' => $row['turno'], 'tiempo' => $row['tiempo'],'ficha'=>0 );
+			    	   		$datos =  array('turno' => $row['turno'], 'tiempo' => $row['tiempo'],'ficha'=>0 , 'nextTurno'=> '-');
 			    	   	}
 			    	}
 			    	if($i ==1){
 			    		$datos ['ficha']= $row['ficha'];
+			    		$datos ['nextTurno']= $row['turno'];
 			    	}
 			    	$i++;
 			    }
@@ -47,7 +48,7 @@ function checkNextInning($conexion,$turno){
 			$turno = (int)$_GET['Turno'];
 		}
 		$Indice = date("Y-m-d");// Fecha actual, ejemplo 2015-12-31 23:59:59
-		echo $sqlGetTurno = "SELECT * FROM alumnos WHERE estado = 1 and indice ='".$Indice ."' and turno !=".(int)$_GET['Turno']." order by turno asc limit 1";
+		 $sqlGetTurno = "SELECT * FROM alumnos WHERE estado = 1 and indice ='".$Indice ."' and turno !=".(int)$_GET['Turno']." order by turno asc limit 1";
 		$estado =1;
 		$result = $conexion->query($sqlGetTurno);
 			if ($result->num_rows != 0) {

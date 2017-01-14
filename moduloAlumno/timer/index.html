@@ -2,23 +2,21 @@
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Draft Countdown</title>
+  <title>Reinscripciones ITE :: Modulo Alumnos</title>
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-
-  
-      <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
   
 </head>
 
 <body>
   <div class="wrap">  
-  <h1>Turno: <strong id="turnno"> - </strong> Siguiente turno: <strong id="nextturno"> - </strong></h1>
+  <h1>Turno: <strong id="turno"> - </strong> Siguiente turno: <strong id="nextturno"> - </strong></h1>
 
   <div class="countdown centerDiv">
 
-    <div class="bloc-time min"  id="minutos" data-init-value="2">
+    <div class="bloc-time min"  id="minutos" data-init-value="0">
       <span class="count-title">Minutos</span>
 
       <div class="figure min min-1">
@@ -44,7 +42,7 @@
       </div>
     </div>
 
-    <div class="bloc-time sec" data-init-value="0">
+    <div class="bloc-time sec" id="segundos" data-init-value="0">
       <span class="count-title">Segundos</span>
 
         <div class="figure sec sec-1">

@@ -1,28 +1,22 @@
 // Create Countdown
 var Countdown = {
-  
   // Backbone-like structure
   $el: $('.countdown'),
-  
   // Params
   countdown_interval: null,
   total_seconds     : 0,
-  
   // Initialize the countdown  
   init: function() {
-    
     // DOM
 		this.$ = {
     	minutes: this.$el.find('.bloc-time.min .figure'),
     	seconds: this.$el.find('.bloc-time.sec .figure')
    	};
-
     // Init countdown values
     this.values = {
         minutes: this.$.minutes.parent().attr('data-init-value'),
         seconds: this.$.seconds.parent().attr('data-init-value'),
     };
-    
     // Initialize total seconds
     this.total_seconds =  (this.values.minutes * 60) + this.values.seconds;
 
@@ -33,14 +27,20 @@ var Countdown = {
   count: function() {
     
     var that    = this,
+        tocs    = 0,
         $min_1  = this.$.minutes.eq(0),
         $min_2  = this.$.minutes.eq(1),
         $sec_1  = this.$.seconds.eq(0),
         $sec_2  = this.$.seconds.eq(1);
-    
         this.countdown_interval = setInterval(function() {
 
         if(that.total_seconds > 0) {
+            if(tocs==10){
+              that.checkInning();
+              tocs = 0;
+            }else{
+              ++tocs;
+            }
 
             --that.values.seconds;              
 
@@ -51,7 +51,6 @@ var Countdown = {
             }
 
             // Update DOM values
-            // Hours
             // Minutes
             that.checkHour(that.values.minutes, $min_1, $min_2);
 
@@ -63,6 +62,7 @@ var Countdown = {
         else {
             clearInterval(that.countdown_interval);
         }
+
     }, 1000);    
   },
   
@@ -122,17 +122,68 @@ var Countdown = {
         if(fig_1_value !== '0') this.animateFigure($el_1, 0);
         if(fig_2_value !== val_1) this.animateFigure($el_2, val_1);
     }    
+  },
+  checkInning: function(){
+    var that = this;
+    $.get('/dist/php/turnos.php?Get=3&Turno='+$('#turno').text(), function(result){
+      var jsonResponse  = jQuery.parseJSON(result);
+      console.log(jsonResponse.estado); 
+      if(parseInt(jsonResponse.estado) != 1){
+        if($('#nextturno').text() != "-")
+          that.nextInning();
+        else{
+           Countdown.clearClockUi();
+        }
+      }       
+    });
+  },
+  nextInning: function(){
+    var that = this;
+    var ficha = window.localStorage.getItem('ficha');
+    $.get('/dist/php/turnos.php?Get=2&Turno='+$('#turno').text()+'&Ficha='+ficha,
+      function(result){
+        var jsonResponse  = jQuery.parseJSON(result);
+        console.log(jsonResponse.estado); 
+        if(parseInt(jsonResponse.estado) != 1){
+          that.getInning();
+        }       
+      }
+    );
+
+  },
+  getInning: function(){
+    window.localStorage.removeItem('ficha');
+    $.get('/dist/php/turnos.php?Get=1', function(result){
+      var jsonResponse  = jQuery.parseJSON(result);
+      if(jsonResponse.Alumno.tiempo){
+           console.log(jsonResponse);
+           window.localStorage.setItem('ficha',jsonResponse.Alumno.ficha );
+           $('#minutos').attr('data-init-value',jsonResponse.Alumno.tiempo );
+           $('#turno').empty().text(jsonResponse.Alumno.turno );
+           $('#nextturno').empty().text(jsonResponse.Alumno.nextTurno );
+           Countdown.init();
+       }else{
+            Countdown.clearClockUi();
+       }
+    });
+  },
+  clearClockUi: function(){
+      window.localStorage.removeItem('ficha');
+      $('#minutos').attr('data-init-value',0);
+      $('#segundos').attr('data-init-value',0);
+      $('#turno').empty().text('-');
+      $('#nextturno').empty().text('-');
+      $('div.figure.min.min-1').find('span').empty().text('0');
+      $('div.figure.min.min-2').find('span').empty().text('0');
+      $('div.figure.sec.sec-1').find('span').empty().text('0');
+      $('div.figure.sec.sec-2').find('span').empty().text('0');
+      Countdown.values.seconds = 0;
+      Countdown.values.minutes = 0;
+      clearInterval(Countdown.countdown_interval);
+      //Countdown.init();
   }
 };
 
 $(document).ready(function(){
-    $.get('http://escolarespi.dev/dist/php/turnos.php?Get=1', function(result){
-      var jsonResponse  = jQuery.parseJSON(result);
-      if(jsonResponse.Alumno){
-           console.log(jsonResponse);
-           $('#minutos').attr('data-init-value',jsonResponse.Alumno.tiempo );
-           $('#turnno').empty().text(jsonResponse.Alumno.turno );
-           Countdown.init();
-       }
-    });
+    Countdown.getInning();
 });
