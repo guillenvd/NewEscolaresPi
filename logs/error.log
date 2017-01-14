@@ -1397,3 +1397,28 @@
 [Fri Jan 13 09:35:24.185764 2017] [:error] [pid 21488:tid 1960] [client 127.0.0.1:55779] script 'C:/OTRA/htdocs/NewEscolaresPi/moduloAlumno/php/getDocRequeridos.php' not found or unable to stat, referer: http://escolarespi.dev/moduloAlumno/
 [Fri Jan 13 09:41:36.324144 2017] [:error] [pid 21488:tid 1932] [client 127.0.0.1:58327] script 'C:/OTRA/htdocs/NewEscolaresPi/moduloAlumno/php/getDocRequeridos.php' not found or unable to stat, referer: http://escolarespi.dev/moduloAlumno/
 [Fri Jan 13 11:50:32.265007 2017] [:error] [pid 21488:tid 1900] [client 127.0.0.1:63061] script 'C:/OTRA/htdocs/NewEscolaresPi/moduloAlumno/php/getDocRequeridos.php' not found or unable to stat, referer: http://escolarespi.dev/moduloAlumno/
+[Fri Jan 13 16:22:05.475289 2017] [:error] [pid 3115] [client 127.0.0.1:59008] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 7
+[Fri Jan 13 16:22:05.481269 2017] [:error] [pid 3115] [client 127.0.0.1:59008] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 43
+[Fri Jan 13 16:22:05.481285 2017] [:error] [pid 3115] [client 127.0.0.1:59008] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 44
+[Fri Jan 13 16:22:05.481342 2017] [:error] [pid 3115] [client 127.0.0.1:59008] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 50
+[Fri Jan 13 16:22:05.481804 2017] [:error] [pid 3115] [client 127.0.0.1:59008] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 16:22:14.771629 2017] [:error] [pid 3117] [client 127.0.0.1:59012] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 10
+[Fri Jan 13 17:10:52.442056 2017] [:error] [pid 3049] [client 127.0.0.1:59398] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 7
+[Fri Jan 13 17:10:52.442084 2017] [:error] [pid 3049] [client 127.0.0.1:59398] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 43
+[Fri Jan 13 17:10:52.442088 2017] [:error] [pid 3049] [client 127.0.0.1:59398] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 44
+[Fri Jan 13 17:10:52.442137 2017] [:error] [pid 3049] [client 127.0.0.1:59398] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 50
+[Fri Jan 13 17:10:52.442530 2017] [:error] [pid 3049] [client 127.0.0.1:59398] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 17:10:55.716959 2017] [:error] [pid 3048] [client 127.0.0.1:59400] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 7
+[Fri Jan 13 17:10:55.716988 2017] [:error] [pid 3048] [client 127.0.0.1:59400] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 43
+[Fri Jan 13 17:10:55.716992 2017] [:error] [pid 3048] [client 127.0.0.1:59400] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 44
+[Fri Jan 13 17:10:55.717025 2017] [:error] [pid 3048] [client 127.0.0.1:59400] PHP Notice:  Undefined index: Turno in /var/www/html/newescolares/dist/php/turnos.php on line 50
+[Fri Jan 13 17:10:55.717304 2017] [:error] [pid 3048] [client 127.0.0.1:59400] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 17:11:01.962830 2017] [:error] [pid 3047] [client 127.0.0.1:59402] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 17:11:19.531441 2017] [:error] [pid 3115] [client 127.0.0.1:59416] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 17:11:22.921621 2017] [:error] [pid 3114] [client 127.0.0.1:59418] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 17:14:53.093443 2017] [:error] [pid 3119] [client 127.0.0.1:59440] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 17:15:12.102906 2017] [:error] [pid 3125] [client 127.0.0.1:59442] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 17:15:12.407017 2017] [:error] [pid 3128] [client 127.0.0.1:59444] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 17:15:12.957698 2017] [:error] [pid 3127] [client 127.0.0.1:59446] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 17:16:15.473286 2017] [:error] [pid 3126] [client 127.0.0.1:59448] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55
+[Fri Jan 13 17:16:15.778915 2017] [:error] [pid 3129] [client 127.0.0.1:59450] PHP Notice:  Undefined index: Ficha in /var/www/html/newescolares/dist/php/turnos.php on line 55

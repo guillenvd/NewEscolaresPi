@@ -5,9 +5,9 @@ var dropDowntemplate ='<div class="dropdown">'
                             +'<span class="caret"></span>'
                           +'</button>'
                           +'<ul class="dropdown-menu" aria-labelledby="actionDropdown">'
-                            +'<li action=\'1\'><a href="#">En espera</a></li>'
-                            +'<li action=\'2\'><a href="#">Atendido</a></li>'
-                            +'<li action=\'3\'><a href="#">No se presentó</a></li>'
+                            +'<li action=\'1\'><a href="#Espera">En espera</a></li>'
+                            +'<li action=\'2\'><a href="#Espera">Atendido</a></li>'
+                            +'<li action=\'3\'><a href="#Espera">No se presentó</a></li>'
                           +'</ul>'
                         +'</div>';
 
@@ -76,7 +76,6 @@ var EsperaController = (function() {
         console.log(data)
         _App.phpOperation('updateStatus', data, function(resultPhp){ 
             console.log(resultPhp)
-            table
             _Espera.constructor()
         });
     };
