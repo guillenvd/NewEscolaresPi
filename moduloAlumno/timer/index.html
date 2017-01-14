@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Draft Countdown</title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+  <div class="wrap">  
+  <h1>Turno: <strong id="turnno"> - </strong> Siguiente turno: <strong id="nextturno"> - </strong></h1>
+
+  <div class="countdown centerDiv">
+
+    <div class="bloc-time min"  id="minutos" data-init-value="2">
+      <span class="count-title">Minutos</span>
+
+      <div class="figure min min-1">
+        <span class="top">0</span>
+        <span class="top-back">
+          <span>0</span>
+        </span>
+        <span class="bottom">0</span>
+        <span class="bottom-back">
+          <span>0</span>
+        </span>        
+      </div>
+
+      <div class="figure min min-2">
+       <span class="top">0</span>
+        <span class="top-back">
+          <span>0</span>
+        </span>
+        <span class="bottom">0</span>
+        <span class="bottom-back">
+          <span>0</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="bloc-time sec" data-init-value="0">
+      <span class="count-title">Segundos</span>
+
+        <div class="figure sec sec-1">
+        <span class="top">0</span>
+        <span class="top-back">
+          <span>0</span>
+        </span>
+        <span class="bottom">0</span>
+        <span class="bottom-back">
+          <span>0</span>
+        </span>          
+      </div>
+
+      <div class="figure sec sec-2">
+        <span class="top">0</span>
+        <span class="top-back">
+          <span>0</span>
+        </span>
+        <span class="bottom">0</span>
+        <span class="bottom-back">
+          <span>0</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
