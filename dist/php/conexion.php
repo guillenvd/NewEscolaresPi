@@ -22,8 +22,8 @@ function getEstado($value) {
 
 	$host = 'localhost';
 	$user = 'root';
-	$pw	  = '';
-	$db   = 'escolarespi_db';
+	$pw	  = 'admin';
+	$db   = 'escolarespi';
 
 	$conn = new mysqli($host,$user,$pw,$db);
 

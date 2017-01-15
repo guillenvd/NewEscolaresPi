@@ -150,6 +150,7 @@ var Countdown = {
         console.log(jsonResponse.estado); 
         if(parseInt(jsonResponse.estado) != 1){
           that.getInning();
+           location.reload().trigger();
         }       
       }
     );
@@ -167,6 +168,7 @@ var Countdown = {
            $('#turno').empty().text(jsonResponse.Alumno.turno );
            $('#nextturno').empty().text(jsonResponse.Alumno.nextTurno );
            Countdown.init();
+
        }else{
           
           if( Countdown.values ){
@@ -195,7 +197,8 @@ var Countdown = {
               Countdown.getInning();
           }, 10000);
       },1000);
-  }
+
+ }
 };
 
 $(document).ready(function(){
