@@ -56,7 +56,7 @@ var EsperaController = (function() {
                                     responsive: true
                                 });
             table.column(0).visible(false); //hiden columm idAlumno
-            $('#listaEspera tbody').on( 'click', 'li', function () {
+            $('#listaEspera tbody li').unbind('click').bind('click',function () {
                 var data = table.row( $(this).parents('tr') ).data();
                 _Espera.changeAlumnoStatus(data, $(this).attr('action'), table);
             } );
