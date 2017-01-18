@@ -14,6 +14,7 @@
     <link href="vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+
     <!-- Custom Fonts -->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="icon" type="image/ico" href="faviconpi.ico">
@@ -24,15 +25,32 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+<style type="text/css">
+    .institucion{
+         color: #1976D2 !important;
+         text-align: center !important; 
+         margin-top: 5em !important
+    }
+    body{
 
+        background-image: url('img/login-ite.jpg')   !important;
+    }
+</style>
 <body>
-
+        <div class="institucion">
+            <h2 style="font-size: 2.3em !important; font-weight: bold;  padding: 0px !important; margin: 0px !important;">
+            TECNOLÓGICO NACIONAL DE MÉXICO
+            </h2>
+            <h4 style="font-size: 1.5em; padding: 0px !important; margin: 0px !important;">
+            -Instituto Tecnológico de Ensenada-
+            </h4>
+        </div>
     <div class="container" id="containerAuth">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading text-center">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title"><b>¡BIENVENIDO!</b></h3>
                     </div>
                     <div class="panel-body">
                             <fieldset>
@@ -40,19 +58,19 @@
                                 	<div class="input-group-addon">
                                 		<i class="fa fa-user" aria-hidden="true"></i>
                                 	</div>
-                                    <input class="form-control" placeholder="User" name="user" id="user" type="user" autofocus>
+                                    <input class="form-control" placeholder="Usuario" name="user" id="user" type="user" autofocus>
                                 </div>
                                 <div class="form-group input-group">
                                 	<div class="input-group-addon">
                                 		<i class="fa fa-key" aria-hidden="true"></i>
                                 	</div>
-                                    <input class="form-control" placeholder="Password" name="password" id="password" type="password" value="">
+                                    <input class="form-control" placeholder="Contraseña" name="password" id="password" type="password" value="">
                                 </div>
                                 <div class="col-md-12 col-xs-12" id="alerts">
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
                                  <div class="col-md-12 col-xs-12" >
-                                    <a href="#" onclick="_Auth.doLogin();" class="btn btn-lg btn-success btn-block">Login</a>
+                                    <a href="#" onclick="_Auth.doLogin();" class="btn btn-lg btn-success btn-block">Iniciar Sesión</a>
                                 </div>
                             </fieldset>
                        
